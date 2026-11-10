@@ -1,26 +1,207 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ───────────── tokens (docs/DESIGN_SYSTEM.md §3) ───────────── */
+@theme static {
+  --color-bg: #08090a;
+  --color-panel: #111317;
+  --color-panel-2: #16191f;
+  --color-panel-3: #1c2027;
+  --color-line: #23262d;
+  --color-line-2: #2e323a;
+
+  --color-fg: #edeff3;
+  --color-muted: #8a8f98;
+  --color-faint: #5c616b;
+
+  --color-read: #3dd6f5;
+  --color-read-hover: #5fe0f8;
+  --color-write: #8b5cf6;
+  --color-event: #f5b83d;
+  --color-ok: #34d399;
+  --color-danger: #f87171;
+
+  --radius-ctl: 8px;
+  --radius-card: 12px;
+  --radius-win: 16px;
+
+  --ease-expo: cubic-bezier(0.19, 1, 0.22, 1);
+  --ease-quad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+  --animate-shimmer: shimmer 1.8s linear infinite;
+  --animate-marquee: marquee var(--marquee-duration, 40s) linear infinite;
+  --animate-blink: blink 1s steps(2, start) infinite;
+  --animate-pulse-ring: pulse-ring 1.2s var(--ease-quad) 1;
+
+}
+
+/* keyframes live outside @theme so they are always emitted */
+@keyframes shimmer {
+  from { background-position: 150% 0; }
+  to { background-position: -50% 0; }
+}
+@keyframes marquee {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, 0, 0); }
+}
+@keyframes blink {
+  to { visibility: hidden; }
+}
+@keyframes card-glow {
+  0% { opacity: 0; }
+  20% { opacity: 1; }
+  100% { opacity: 0; }
+}
+@keyframes pulse-ring {
+  from { transform: scale(1); opacity: 0.6; }
+  to { transform: scale(2.2); opacity: 0; }
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ───────────── type scale (DESIGN_SYSTEM.md §4) ───────────── */
+@utility text-display {
+  font-size: 40px;
+  line-height: 44px;
+  font-weight: 500;
+  letter-spacing: -0.045em;
+  @media (width >= 48rem) {
+    font-size: 64px;
+    line-height: 68px;
+  }
+}
+@utility text-h2 {
+  font-size: 32px;
+  line-height: 38px;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  @media (width >= 48rem) {
+    font-size: 44px;
+    line-height: 52px;
+  }
+}
+@utility text-h3 {
+  font-size: 24px;
+  line-height: 30px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  @media (width >= 48rem) {
+    font-size: 28px;
+    line-height: 34px;
+  }
+}
+@utility text-h4 {
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+@utility text-body-lg {
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: -0.01em;
+  @media (width >= 48rem) {
+    font-size: 17px;
+    line-height: 26px;
+  }
+}
+@utility text-body {
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: -0.0125em;
+}
+@utility text-label {
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 500;
+  letter-spacing: -0.0125em;
+}
+@utility text-mono {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 20px;
+  letter-spacing: 0;
+}
+@utility text-mono-sm {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0;
+}
+
+/* shimmer text: a light band moving across muted text (MOTION.md "shimmer") */
+@utility shimmer-text {
+  background-image: linear-gradient(
+    90deg,
+    var(--shimmer-base, var(--color-muted)) 0%,
+    var(--shimmer-base, var(--color-muted)) 40%,
+    var(--shimmer-hi, var(--color-fg)) 50%,
+    var(--shimmer-base, var(--color-muted)) 60%,
+    var(--shimmer-base, var(--color-muted)) 100%
+  );
+  background-size: 250% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: var(--animate-shimmer);
+}
+
+@utility scrollbar-none {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ───────────── base ───────────── */
+@layer base {
+  html {
+    color-scheme: dark;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: -0.0125em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection {
+    background: color-mix(in oklab, var(--color-read) 30%, transparent);
+  }
+  h1, h2, h3, h4 {
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-read);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .shimmer-text {
+    color: var(--color-muted);
+    background: none;
+  }
 }
