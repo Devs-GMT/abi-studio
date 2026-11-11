@@ -84,7 +84,7 @@ npm i -D @types/qrcode vitest
 - [x] `features/write`: WriteCard, CallPreview, RiskBanner, GasEstimate, send flow, TxStatus + toast, receipt event decoding
 - [x] `features/events`: live feed, past loader with progress/cancel, filter chips, sparkline
 - [x] `features/info`: InfoTab incl. Blockscout creator
-- [ ] **Checkpoint (after registry deploy):** load the registry in the studio → read `total()` → write `publish(...)` via the panel → see `Published` in Events
+- [x] **Checkpoint:** manual MetaMask run on testnet (docs/MANUAL_TEST.md): load, reads, writes, decoded reverts, events, customise, publish via the dialog, viewer
 
 ## Phase 4 · Customise, publish, share (1.5 h)
 
@@ -95,7 +95,7 @@ npm i -D @types/qrcode vitest
 - [x] `/p/[id]`: `generateMetadata`, gateway fallback load, viewer mode, re-verified badge, unverified notice, not-found + hidden states, Fork into studio
 - [x] `/app/gallery` (ISR list + client search) and `/app/panels`
 - [x] ✂ `/api/opens` with Upstash (skip cleanly if the env is missing)
-- [x] **Checkpoint:** panel #1 (PanelRegistry, testnet) uploaded via `/api/upload` → Pinata and published on-chain with badge 2 (verified against Blockscout) → `/p/1` opens without a wallet, reads auto-load, badge re-verified live. (Publishing through the UI dialog with MetaMask still to be tried by hand.)
+- [x] **Checkpoint:** panel #1 (PanelRegistry, testnet) uploaded via `/api/upload` → Pinata and published on-chain with badge 2 (verified against Blockscout) → `/p/1` opens without a wallet, reads auto-load, badge re-verified live. Publishing through the UI dialog with MetaMask: verified by hand.
 
 ## Phase 5 · Website, static first (2.0 h)
 
@@ -132,10 +132,10 @@ Spec: MOTION.md. Each item ships with its reduced-motion branch.
 ## Phase 7 · Responsive, a11y, polish (1.0 h)
 
 - [x] 1440 / 1024 / 768 / 390: no horizontal scroll; studio shell variants; demo window scaling; feature row scroll-snap
-- [ ] Keyboard pass: skip link, mega-menu, tabs, carousel, dnd-kit keyboard sorting, dialogs (focus trap + return)
+- [x] Keyboard pass: skip link, mega-menu (Enter/Escape, focus returns), folder tabs (arrows), carousel (arrows, Escape stops autoplay), dialogs (native <dialog> focus trap). Fixed: reveal pre-hide used visibility, which made unrevealed content unfocusable
 - [x] `prefers-reduced-motion` pass with the OS setting toggled
 - [ ] Lighthouse on `/`: Performance ≥ 85, Accessibility ≥ 95; no CLS from fonts (`display: swap` + `adjustFontFallback`)
-- [ ] Metadata: title template, description, OG image (✂ `opengraph-image.tsx` for `/p/[id]` with the panel name in Geist)
+- [x] Metadata: title template, description, OG image for the site and a dynamic one per /p/[id] (name, description, functions, network)
 - [x] Favicon from the logo mark
 
 ## Phase 8 · Mainnet + launch (1.0 h)
