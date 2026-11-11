@@ -27,7 +27,7 @@ export const RISK_COPY =
 
 export function riskOf(f: FunctionFragment): { risky: boolean; reason?: string } {
   if (f.constant) return { risky: false }
-  if (f.payable) return { risky: true, reason: 'Payable — this call can send BOT' }
+  if (f.payable) return { risky: true, reason: 'Payable: this call can send BOT' }
   if (RISKY_NAMES.some((r) => r.test(f.name))) return { risky: true, reason: 'Admin-looking function' }
   if (/^burn/i.test(f.name) && f.inputs.some((i) => i.type === 'address'))
     return { risky: true, reason: 'Burns tokens from an address' }
@@ -41,7 +41,7 @@ export function riskOfCall(f: FunctionFragment, args: unknown[]): { risky: boole
   if (/^(approve|increaseallowance)$/i.test(f.name)) {
     const amt = args[1]
     if (typeof amt === 'bigint' && amt === MaxUint256)
-      return { risky: true, reason: 'Unlimited approval — the spender can move all of these tokens' }
+      return { risky: true, reason: 'Unlimited approval: the spender can move all of these tokens' }
   }
   return { risky: false }
 }

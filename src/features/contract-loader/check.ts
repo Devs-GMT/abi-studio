@@ -26,8 +26,8 @@ export interface CheckOutcome {
 
 export function checkAddressFormat(raw: string): { ok: true; address: string } | { ok: false; error: string } {
   const s = raw.trim()
-  if (!/^0x[0-9a-fA-F]{40}$/.test(s)) return { ok: false, error: 'Not an address — expected 0x followed by 40 hex characters' }
-  if (!isAddress(s)) return { ok: false, error: 'Checksum mismatch — check the capital letters, or paste it all lowercase' }
+  if (!/^0x[0-9a-fA-F]{40}$/.test(s)) return { ok: false, error: 'Not an address. Expected 0x followed by 40 hex characters' }
+  if (!isAddress(s)) return { ok: false, error: 'Checksum mismatch. Check the capital letters, or paste it all lowercase' }
   return { ok: true, address: getAddress(s) }
 }
 
@@ -59,10 +59,10 @@ export async function runChecks(rawAddress: string, network: Network, parsed: Pa
   if (!withCode.length) {
     const text =
       unreachable.length === targets.length
-        ? "Couldn't reach BOT Chain RPC — try again in a moment"
+        ? "Couldn't reach BOT Chain RPC. Try again in a moment"
         : network === 'auto'
-          ? 'No contract here — check the network'
-          : `No contract here on ${CHAINS[network].short} ${network} — check the network`
+          ? 'No contract here. Check the network'
+          : `No contract here on ${CHAINS[network].short} ${network}. Check the network`
     rows.push({ id: 'code', status: 'fail', text })
     return { ok: false, rows }
   }
@@ -72,7 +72,7 @@ export async function runChecks(rawAddress: string, network: Network, parsed: Pa
   rows.push({
     id: 'code',
     status: 'ok',
-    text: both ? `Contract found on both networks — using ${CHAINS[chainId].short} ${chainId}` : `Contract found on ${CHAINS[chainId].short} ${chainId}`,
+    text: both ? `Contract found on both networks, using ${CHAINS[chainId].short} ${chainId}` : `Contract found on ${CHAINS[chainId].short} ${chainId}`,
   })
 
   rows.push({ id: 'abi', status: 'ok', text: 'ABI valid', detail: parsed.warnings.length ? parsed.warnings.join('\n') : undefined })
@@ -97,7 +97,7 @@ export async function runChecks(rawAddress: string, network: Network, parsed: Pa
       rows.push({
         id: 'selectors',
         status: 'warn',
-        text: `${missing.length} function${missing.length === 1 ? '' : 's'} may not exist in this contract — calls may revert`,
+        text: `${missing.length} function${missing.length === 1 ? '' : 's'} may not exist in this contract, so calls may revert`,
         detail: missing.join('\n'),
       })
   }

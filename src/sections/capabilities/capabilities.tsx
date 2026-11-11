@@ -26,7 +26,7 @@ const TABS: { id: TabId; label: string; accent: string; cards: { key: string; ti
     cards: [
       { key: 'write-inputs', title: 'Typed inputs', body: 'Checksums, uint ranges, hex bytes and arrays as tags.' },
       { key: 'write-payable', title: 'Payable BOT field', body: 'Send value alongside the call, shown in the preview.' },
-      { key: 'write-gas', title: 'Gas estimate', body: 'Estimated before MetaMask opens — and failures decoded.' },
+      { key: 'write-gas', title: 'Gas estimate', body: 'Estimated before MetaMask opens, with failures decoded.' },
       { key: 'write-safety', title: 'Safety warnings', body: 'A red banner on admin and value-moving functions.' },
     ],
   },
@@ -46,7 +46,7 @@ const TABS: { id: TabId; label: string; accent: string; cards: { key: string; ti
     label: 'Share',
     accent: 'bg-fg',
     cards: [
-      { key: 'share-link', title: 'One link', body: 'Anyone can open /p/14 — no wallet needed to read.' },
+      { key: 'share-link', title: 'One link', body: 'Anyone can open /p/14. No wallet needed to read.' },
       { key: 'share-qr', title: 'QR code', body: 'For demo days, slides and judges’ phones.' },
       { key: 'share-chain', title: 'Stored on-chain', body: 'Name and IPFS CID live in the PanelRegistry.' },
       { key: 'share-badge', title: 'Verified badge', body: 'Deployer or owner, checked live every time it’s shown.' },

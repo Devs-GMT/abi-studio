@@ -34,7 +34,7 @@ export const DEMO = {
 
 /** Dashboard mockup (section 8): last 24h of the sample contract. */
 export const DASHBOARD = {
-  title: 'Snack Poll — last 24h',
+  title: 'Snack Poll · last 24h',
   stats: [
     { label: 'Calls today', value: 1284 },
     { label: 'Events today', value: 3906 },

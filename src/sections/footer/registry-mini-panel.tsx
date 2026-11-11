@@ -98,7 +98,7 @@ export function RegistryMiniPanel({ initialTotal }: { initialTotal: number | nul
           </dt>
           <dd className="tabular text-fg">
             <span className="mr-2 text-faint">→</span>
-            <span ref={totalRef}>{REGISTRY_DEPLOYED ? (total === null ? '…' : formatThousands(total)) : '—'}</span>
+            <span ref={totalRef}>{REGISTRY_DEPLOYED ? (total === null ? '…' : formatThousands(total)) : 'not deployed'}</span>
           </dd>
         </div>
         <div className="flex items-baseline justify-between gap-4">
@@ -107,7 +107,7 @@ export function RegistryMiniPanel({ initialTotal }: { initialTotal: number | nul
           </dt>
           <dd className="text-fg">
             <span className="mr-2 text-faint">→</span>
-            {curator ? shortAddress(curator) : '—'}
+            {curator ? shortAddress(curator) : 'not set'}
           </dd>
         </div>
       </dl>

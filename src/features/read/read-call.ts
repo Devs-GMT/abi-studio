@@ -27,7 +27,7 @@ export interface ReadResult {
 
 export class EmptyResultError extends Error {
   constructor() {
-    super('Empty result — this function may not exist in this contract.')
+    super('Empty result. This function may not exist in this contract.')
   }
 }
 

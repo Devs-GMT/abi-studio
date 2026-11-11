@@ -39,7 +39,7 @@ export function parseInteger(input: string, signed = false): { ok: true; value: 
       return checkSign(parseUnits(sci[1], exp), signed)
     }
     if (/^-?\d+$/.test(t)) return checkSign(BigInt(t), signed)
-    if (/^-?\d+\.\d+$/.test(t)) return { ok: false, error: 'Whole numbers only — add "BOT" (1.5 BOT) or use ×10¹⁸' }
+    if (/^-?\d+\.\d+$/.test(t)) return { ok: false, error: 'Whole numbers only. Add "BOT" (1.5 BOT) or use ×10¹⁸' }
     return { ok: false, error: 'Not a number' }
   } catch {
     return { ok: false, error: 'Too many decimal places for this unit' }
@@ -65,8 +65,8 @@ function coerceInt(type: string, raw: RawValue): Coerced {
   const { min, max, signed } = intBounds(type)
   const p = parseInteger(raw, signed)
   if (!p.ok) return p
-  if (p.value > max) return fail(`Too large — ${type} max is ${max.toString()}`)
-  if (p.value < min) return fail(`Too small — ${type} min is ${min.toString()}`)
+  if (p.value > max) return fail(`Too large: ${type} max is ${max.toString()}`)
+  if (p.value < min) return fail(`Too small: ${type} min is ${min.toString()}`)
   return ok(p.value)
 }
 
@@ -74,8 +74,8 @@ function coerceAddress(raw: RawValue): Coerced {
   if (typeof raw !== 'string') return fail('Expected an address')
   const s = raw.trim()
   if (!s) return fail('Required')
-  if (!/^0x[0-9a-fA-F]{40}$/.test(s)) return fail('Not an address — expected 0x followed by 40 hex characters')
-  if (!isAddress(s)) return fail('Checksum mismatch — check the capital letters, or paste it all lowercase')
+  if (!/^0x[0-9a-fA-F]{40}$/.test(s)) return fail('Not an address. Expected 0x followed by 40 hex characters')
+  if (!isAddress(s)) return fail('Checksum mismatch. Check the capital letters, or paste it all lowercase')
   return ok(getAddress(s))
 }
 

@@ -14,7 +14,7 @@ export type ParseResult =
     }
   | { ok: false; error: string; line?: number; column?: number }
 
-const NO_ABI_FIELD = 'This file has no abi field — in Remix, copy the ABI from the Compile tab'
+const NO_ABI_FIELD = 'This file has no abi field. In Remix, copy the ABI from the Compile tab'
 
 /** Convert a 0-based character offset into 1-based line/column. */
 export function offsetToLineCol(text: string, offset: number) {
@@ -99,7 +99,7 @@ function parseHuman(text: string): ParseResult {
       return { ok: false, error: `Line ${i + 1}: ${shortErr(e)}`, line: i + 1, column: 1 }
     }
   }
-  if (sigs.length === 0) return { ok: false, error: 'No signatures found — one per line, e.g. function vote(uint8)' }
+  if (sigs.length === 0) return { ok: false, error: 'No signatures found. Use one per line, e.g. function vote(uint8)' }
   return buildInterface(sigs, 'human')
 }
 

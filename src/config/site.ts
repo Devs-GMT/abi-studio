@@ -42,5 +42,5 @@ export const SITE = {
   name: 'ABI Studio',
   tagline: 'Any BOT Chain contract. An instant interface.',
   description:
-    'Paste an address and ABI. Get read, write and live events in seconds — and share it with one link.',
+    'Paste an address and ABI. Get read, write and live events in seconds, and share it with one link.',
 }

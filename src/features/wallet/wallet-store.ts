@@ -94,7 +94,7 @@ export const useWallet = create<WalletState>((set, get) => ({
 /** Switch MetaMask to `chainId`, adding the network first if MetaMask doesn't know it (4902). */
 export async function switchOrAddChain(chainId: ChainId): Promise<void> {
   const eth = getInjected()
-  if (!eth) throw new Error('Install MetaMask to send transactions — reading and events work without it.')
+  if (!eth) throw new Error('Install MetaMask to send transactions. Reading and events work without it.')
   try {
     await eth.request({ method: 'wallet_switchEthereumChain', params: [{ chainId: CHAINS[chainId].hex }] })
   } catch (e) {
@@ -111,7 +111,7 @@ export async function switchOrAddChain(chainId: ChainId): Promise<void> {
 /** Connect if needed, make sure we're on `chainId`, return a signer. Never sends anything. */
 export async function getSignerFor(chainId: ChainId): Promise<JsonRpcSigner> {
   const eth = getInjected()
-  if (!eth) throw new Error('Install MetaMask to send transactions — reading and events work without it.')
+  if (!eth) throw new Error('Install MetaMask to send transactions. Reading and events work without it.')
   const w = useWallet.getState()
   if (!w.account) {
     const a = await w.connect()

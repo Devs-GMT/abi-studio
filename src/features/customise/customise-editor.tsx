@@ -272,7 +272,7 @@ function FnRow({ fnKey, kind }: { fnKey: string; kind: 'read' | 'write' }) {
           onClick={() => setFnMeta(fnKey, { hidden: !hidden })}
           aria-pressed={hidden}
           aria-label={hidden ? `Show ${fnKey}` : `Hide ${fnKey}`}
-          title={hidden ? 'Hidden — click to show' : 'Visible — click to hide'}
+          title={hidden ? 'Hidden. Click to show' : 'Visible. Click to hide'}
           className="col-start-3 row-start-1 inline-flex size-7 items-center justify-center rounded-md text-muted hover:bg-panel-3 hover:text-fg md:col-start-auto md:row-start-auto"
         >
           {hidden ? <EyeOff className="size-4 text-faint" strokeWidth={1.5} /> : <Eye className="size-4" strokeWidth={1.5} />}

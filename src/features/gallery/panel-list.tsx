@@ -56,7 +56,7 @@ function Row({ p, opens }: { p: PanelRecord; opens: number | null }) {
             {p.chainId === 677 ? 'Mainnet' : p.chainId === 968 ? 'Testnet' : p.chainId}
           </Pill>
         </span>
-        <span className="hidden font-mono text-[12px] text-muted md:block">{fnCount === null ? '—' : `${fnCount} fn`}</span>
+        <span className="hidden font-mono text-[12px] text-muted md:block">{fnCount === null ? '' : `${fnCount} fn`}</span>
         <span className="hidden md:block">
           {badge && badge.badge > 0 ? (
             <Pill tone="ok">{badge.badge === 2 ? '✓ Deployer' : '✓ Owner'}</Pill>

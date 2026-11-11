@@ -193,7 +193,7 @@ export function WriteCard({ info }: { info: FnInfo }) {
 
       {gasFailed && gas.status === 'error' && (
         <div className="mt-3">
-          <p className="mb-1.5 text-[12px] text-event">Gas estimate failed — this call would likely revert:</p>
+          <p className="mb-1.5 text-[12px] text-event">Gas estimate failed. This call would likely revert:</p>
           <RevertBlock revert={gas.revert} chainId={doc.chainId} />
         </div>
       )}

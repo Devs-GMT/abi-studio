@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!r || r.hidden) return { title: 'Panel not found' }
   return {
     title: r.name,
-    description: `Read, write and watch events for ${shortAddress(r.target)} on BOT Chain — a panel made with ABI Studio.`,
+    description: `Read, write and watch events for ${shortAddress(r.target)} on BOT Chain. A panel made with ABI Studio.`,
   }
 }
 

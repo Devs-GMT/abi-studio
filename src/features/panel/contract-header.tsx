@@ -109,7 +109,7 @@ export function ContractHeader({ onPublish }: { onPublish?: () => void }) {
       </div>
       {mode === 'view' && record && badge && badge.badge === 0 && (
         <p role="note" className="border-t border-event/25 bg-event/[0.06] px-4 py-2 text-[12px] text-event md:px-6">
-          Unverified panel — only interact with contracts you trust.
+          Unverified panel. Only interact with contracts you trust.
         </p>
       )}
     </header>

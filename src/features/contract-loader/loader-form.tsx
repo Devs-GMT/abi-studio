@@ -272,7 +272,7 @@ export function LoaderForm() {
                   <Upload className="size-5 text-faint" strokeWidth={1.5} />
                 )}
                 <p className="text-[13px] text-muted">
-                  Drop a Remix, Hardhat or Foundry <span className="font-mono">.json</span> — we read its <span className="font-mono">abi</span> field.
+                  Drop a Remix, Hardhat or Foundry <span className="font-mono">.json</span>; we read its <span className="font-mono">abi</span> field.
                 </p>
                 <Button size="sm" variant="ghost" onClick={() => fileRef.current?.click()}>
                   Choose file

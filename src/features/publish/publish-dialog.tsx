@@ -151,7 +151,7 @@ export function PublishDialog({ open, onClose }: { open: boolean; onClose: () =>
                     {badge.badge === 2 ? '✓ Deployer' : '✓ Owner'} · via {badge.via}
                   </Pill>
                 ) : (
-                  <span className="text-event">No badge — panel will show as unverified</span>
+                  <span className="text-event">No badge. The panel will show as unverified</span>
                 )}
               </dd>
             </dl>
@@ -218,7 +218,7 @@ export function PublishDialog({ open, onClose }: { open: boolean; onClose: () =>
             {!REGISTRY_DEPLOYED ? (
               <div className="rounded-ctl border border-event/30 bg-event/[0.06] p-3 text-[13px]">
                 <p className="text-event">The PanelRegistry contract isn&apos;t deployed on this site yet, so panels can&apos;t be published.</p>
-                <p className="mt-1 text-muted">You can keep working — your draft is saved in this browser — or download the panel JSON.</p>
+                <p className="mt-1 text-muted">You can keep working (your draft is saved in this browser) or download the panel JSON.</p>
                 <Button size="sm" variant="ghost" className="mt-3" onClick={downloadJson}>
                   <Download /> Download panel JSON
                 </Button>

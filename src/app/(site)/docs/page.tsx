@@ -60,7 +60,7 @@ export default function DocsPage() {
         <ul className="list-disc space-y-2 pl-5">
           <li>
             <strong className="text-fg">Remix:</strong> open the Solidity Compiler tab, compile, then click <em>ABI</em> under the contract to copy it. Or drop the
-            file from <Code>artifacts/</Code> — we read its <Code>abi</Code> field.
+            file from <Code>artifacts/</Code>; we read its <Code>abi</Code> field.
           </li>
           <li>
             <strong className="text-fg">Hardhat:</strong> drop <Code>artifacts/contracts/YourContract.sol/YourContract.json</Code>.
@@ -85,7 +85,7 @@ export default function DocsPage() {
 
         <H id="use">Reading, writing, events</H>
         <p>
-          Read functions with no inputs load automatically. Write functions show exactly what will be sent — for example <Code>vote(2) with 0 BOT</Code> — plus
+          Read functions with no inputs load automatically. Write functions show exactly what will be sent (for example <Code>vote(2) with 0 BOT</Code>), plus
           a gas estimate. If the estimate fails, you see the decoded revert reason before you spend anything. Events stream live; use <em>Load past events</em>{' '}
           to look back (BOT Chain makes a block roughly every 0.7 seconds, so a day is about 130,000 blocks).
         </p>
@@ -113,14 +113,14 @@ export default function DocsPage() {
           <li>ABI Studio never holds your keys; every transaction is confirmed in your wallet.</li>
           <li>Nothing is ever sent automatically. You always see the exact call first.</li>
           <li>Payable and admin-looking functions (withdraw, transferOwnership, upgrade, mint…) get a red warning.</li>
-          <li>Panels without a verified badge say: “Unverified panel — only interact with contracts you trust.”</li>
+          <li>Panels without a verified badge say: “Unverified panel. Only interact with contracts you trust.”</li>
         </ul>
 
         <H id="networks">Networks</H>
         <ul className="list-disc space-y-2 pl-5">
           {[CHAINS[677], CHAINS[968]].map((c) => (
             <li key={c.id}>
-              {c.name} — chain ID <Code>{String(c.id)}</Code>, RPC <Code>{c.rpc}</Code>, explorer{' '}
+              {c.name}: chain ID <Code>{String(c.id)}</Code>, RPC <Code>{c.rpc}</Code>, explorer{' '}
               <a href={c.explorer} target="_blank" rel="noopener noreferrer" className="text-read hover:underline">
                 {c.explorer.replace('https://', '')}
               </a>

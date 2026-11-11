@@ -38,7 +38,7 @@ function FunctionGroups({ kind }: { kind: 'read' | 'write' }) {
   const { groups } = useGroups(kind)
   const showTitles = groups.length > 1 || (groups[0] && groups[0].title.toLowerCase() !== kind)
   if (!groups.length)
-    return <EmptyState title={kind === 'read' ? 'No read functions' : 'No write functions'} body="Nothing to show here — hidden functions can be shown again in Customise." />
+    return <EmptyState title={kind === 'read' ? 'No read functions' : 'No write functions'} body="Nothing to show here. Hidden functions can be shown again in Customise." />
   return (
     <div className="flex flex-col gap-6">
       {groups.map((g) => (

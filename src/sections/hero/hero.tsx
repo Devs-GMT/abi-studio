@@ -15,7 +15,7 @@ export function Hero() {
         </div>
         <HeroHeadline />
         <p data-reveal className="mt-6 max-w-[52ch] text-body-lg text-muted">
-          Paste an address and ABI. Get read, write and live events in seconds — and share it with one link.
+          Paste an address and ABI. Get read, write and live events in seconds, and share it with one link.
         </p>
         <div data-reveal className="mt-8 flex flex-wrap items-center justify-center gap-3">
           <ButtonLink href="/app" size="lg">

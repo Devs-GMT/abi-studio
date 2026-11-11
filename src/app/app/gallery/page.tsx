@@ -17,7 +17,7 @@ async function GalleryList() {
       panels={panels}
       empty={
         <span className="flex flex-col items-center gap-3">
-          {REGISTRY_DEPLOYED ? 'No panels published yet — be the first.' : 'The PanelRegistry isn’t deployed on this site yet.'}
+          {REGISTRY_DEPLOYED ? 'No panels published yet. Be the first.' : 'The PanelRegistry isn’t deployed on this site yet.'}
           <ButtonLink href="/app" size="sm">
             Make a panel
           </ButtonLink>
