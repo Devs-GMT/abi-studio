@@ -110,7 +110,7 @@ export function Navbar() {
       )}
     >
       <div className="mx-auto flex h-14 max-w-[1248px] items-center gap-6 px-4 md:px-6">
-        <Link href="/" aria-label="ABI Studio home" className="shrink-0">
+        <Link href="/" aria-label="ABI Studio home" className="flex h-8 shrink-0 items-center">
           <Logo />
         </Link>
 

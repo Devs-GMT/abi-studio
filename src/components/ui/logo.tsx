@@ -25,7 +25,7 @@ export function Logo({ className, compact }: { className?: string; compact?: boo
   return (
     <span className={cn('inline-flex items-center gap-2 text-fg', className)}>
       <LogoMark />
-      {!compact && <span className="text-[15px] font-medium tracking-[-0.02em]">ABI Studio</span>}
+      {!compact && <span className="text-[15px] font-medium leading-none tracking-[-0.02em]">ABI Studio</span>}
     </span>
   )
 }
