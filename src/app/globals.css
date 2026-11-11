@@ -196,8 +196,9 @@
 /* Pre-hide reveal targets only when JS runs and motion is allowed (no flash, no-JS safe).
    `motion-fallback` is set by the head script if GSAP never initialises. */
 @media (prefers-reduced-motion: no-preference) {
+  /* opacity, not visibility: hidden elements can't take keyboard focus */
   .js-motion:not(.motion-fallback) [data-reveal] {
-    visibility: hidden;
+    opacity: 0;
   }
   .js-motion:not(.motion-fallback) [data-hero-line] {
     visibility: hidden;

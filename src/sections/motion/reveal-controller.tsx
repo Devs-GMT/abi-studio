@@ -13,7 +13,7 @@ export function RevealController() {
     const mm = gsap.matchMedia()
     mm.add(MOTION_OK, () => {
       // Client-side navigation can arrive after the CSS fallback kicked in: hide explicitly.
-      gsap.set('[data-reveal]', { autoAlpha: 0 })
+      gsap.set('[data-reveal]', { opacity: 0 })
       root.classList.remove('motion-fallback')
       const triggers = ScrollTrigger.batch('[data-reveal]', {
         start: 'top 85%',
@@ -21,13 +21,22 @@ export function RevealController() {
         onEnter: (els) =>
           gsap.fromTo(
             els,
-            { autoAlpha: 0, y: 24, rotateX: 8, transformPerspective: 800 },
-            { autoAlpha: 1, y: 0, rotateX: 0, duration: 0.9, ease: 'expo.out', stagger: 0.06, overwrite: true },
+            { opacity: 0, y: 24, rotateX: 8, transformPerspective: 800 },
+            { opacity: 1, y: 0, rotateX: 0, duration: 0.9, ease: 'expo.out', stagger: 0.06, overwrite: true },
           ),
       })
+      // Keyboard users: anything that receives focus shows immediately.
+      const onFocus = (e: FocusEvent) => {
+        const el = (e.target as HTMLElement | null)?.closest<HTMLElement>('[data-reveal]')
+        if (el && Number(getComputedStyle(el).opacity) < 1) gsap.to(el, { opacity: 1, y: 0, rotateX: 0, duration: 0.3, overwrite: true })
+      }
+      document.addEventListener('focusin', onFocus)
       // Anything already above the fold on load.
       ScrollTrigger.refresh()
-      return () => triggers.forEach((t) => t.kill())
+      return () => {
+        triggers.forEach((t) => t.kill())
+        document.removeEventListener('focusin', onFocus)
+      }
     })
     root.dataset.revealReady = '1'
     return () => mm.revert()
