@@ -2,70 +2,25 @@
 
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { cn } from '@/lib/cn'
+import { RECEIPTS } from './receipts'
 import { MOTION_OK, gsap, useGSAP } from '@/lib/gsap'
 
 const SLIDES = [
   {
     title: 'Let judges try your hackathon contract.',
     body: 'Publish a panel, put the QR on your slide, and judges call your contract from their phones.',
-    artefact: (
-      <div className="flex items-center gap-4 rounded-ctl border border-line bg-bg p-4">
-        <svg viewBox="0 0 9 9" className="size-20 shrink-0" shapeRendering="crispEdges" aria-hidden>
-          {['111101111', '100101001', '101100101', '000111000', '110010111', '001101000', '111010101', '100110110', '111001011']
-            .flatMap((r, y) => r.split('').map((c, x) => (c === '1' ? <rect key={`${x}${y}`} x={x} y={y} width={1} height={1} className="fill-fg" /> : null)))}
-        </svg>
-        <div className="min-w-0 font-mono text-[12px]">
-          <p className="text-fg">/p/14</p>
-          <p className="mt-1 text-muted">Hackathon Guestbook</p>
-          <p className="mt-1 text-ok">✓ Deployer · via explorer</p>
-        </div>
-      </div>
-    ),
   },
   {
     title: 'Test with your team before the frontend exists.',
     body: 'Send one link; everyone reads, writes and watches events against the same contract.',
-    artefact: (
-      <div className="flex flex-col gap-1.5 font-mono text-[12px]">
-        {[
-          ['setPrice(1.5 BOT)', 'Confirmed ✓', 'text-ok'],
-          ['mint(0x51c4…9a0e, 3)', 'Pending…', 'text-[#a78bfa]'],
-          ['pause()', 'Reverted: NotOwner()', 'text-danger'],
-        ].map(([call, s, c]) => (
-          <div key={call} className="flex items-center justify-between gap-3 rounded-ctl border border-line bg-bg px-3 py-2">
-            <span className="truncate text-fg">{call}</span>
-            <span className={cn('shrink-0', c)}>{s}</span>
-          </div>
-        ))}
-      </div>
-    ),
   },
   {
     title: 'Give your community a voting page in 1 minute.',
     body: 'Load the ABI, hide the admin functions, add a note: “Use option 0–3”.',
-    artefact: (
-      <div className="relative overflow-hidden rounded-ctl border border-line bg-bg py-3 pl-4 pr-3">
-        <p className="text-[13px] font-medium">Cast your vote</p>
-        <code className="font-mono text-[12px] text-muted">vote(uint8 option)</code>
-        <p className="mt-1 text-[12px] text-muted">Use option 0–3</p>
-        <div className="mt-2 flex h-8 items-center rounded-md border border-line-2 px-2 font-mono text-[12px]">2</div>
-        <p className="mt-2 font-mono text-[11px] text-faint">vote(2) with 0 BOT</p>
-      </div>
-    ),
   },
   {
     title: 'Debug a contract live.',
     body: 'Call, read the decoded revert, fix, redeploy, call again.',
-    artefact: (
-      <div className="rounded-ctl border border-danger/25 bg-danger/[0.05] p-3 font-mono text-[12px]">
-        <p className="text-danger">✗ Reverted: NotOpen(uint64 opensAt)</p>
-        <p className="mt-2 text-muted">
-          opensAt <span className="text-fg">2026-11-14 18:00</span> <span className="text-faint">(in 4 days)</span>
-        </p>
-        <p className="mt-2 truncate text-faint">raw 0x4e7a1c3b0000000000000000000000000000000000000000000000006916…</p>
-      </div>
-    ),
   },
 ]
 
@@ -138,7 +93,7 @@ export function UseCases() {
       data-reveal
     >
       <p className="sr-only">Use left and right arrow keys to browse, Escape to stop auto-rotation.</p>
-      <div className="overflow-hidden rounded-card border border-line">
+      <div className="overflow-hidden">
         <div ref={track} className="flex">
           {SLIDES.map((s, i) => (
             <article
@@ -147,16 +102,18 @@ export function UseCases() {
               aria-roledescription="slide"
               aria-label={`${i + 1} of ${n}`}
               aria-hidden={i !== index}
-              className="grid w-full shrink-0 gap-8 bg-panel p-6 md:grid-cols-2 md:items-center md:gap-12 md:p-10"
+              className="grid w-full shrink-0 gap-10 px-1 py-8 md:grid-cols-[1fr_440px] md:items-center md:gap-16 md:py-12"
             >
               <div>
                 <p className="font-mono text-[12px] text-faint">
                   0{i + 1} / 0{n}
                 </p>
-                <h3 className="mt-3 text-h3">{s.title}</h3>
+                <h2 className="mt-4 max-w-[16ch] text-[34px] leading-[38px] tracking-[-0.03em] md:text-[44px] md:leading-[48px]">{s.title}</h2>
                 <p className="mt-3 max-w-[44ch] text-[15px] leading-6 text-muted">{s.body}</p>
               </div>
-              <div aria-hidden>{s.artefact}</div>
+              <div aria-hidden className="mx-auto w-full max-w-[440px] px-3">
+                {RECEIPTS[i]}
+              </div>
             </article>
           ))}
         </div>

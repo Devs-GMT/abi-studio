@@ -1,11 +1,12 @@
 import type { Metadata, Viewport } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { Geist, Geist_Mono, Instrument_Serif } from 'next/font/google'
 import { Toaster } from '@/components/ui/toast'
 import { SITE } from '@/config/site'
 import './globals.css'
 
 const geistSans = Geist({ variable: '--font-geist-sans', subsets: ['latin'], display: 'swap' })
 const geistMono = Geist_Mono({ variable: '--font-geist-mono', subsets: ['latin'], display: 'swap' })
+const serif = Instrument_Serif({ variable: '--font-instrument-serif', subsets: ['latin'], weight: '400', display: 'swap' })
 
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ??
@@ -26,7 +27,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} ${serif.variable}`} suppressHydrationWarning>
       <head>
         {/* Enables pre-hidden reveal states; falls back to visible if GSAP never starts. */}
         <script
