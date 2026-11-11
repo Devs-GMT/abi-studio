@@ -3,6 +3,7 @@
 import { useRef } from 'react'
 import { ButtonLink } from '@/components/ui/button'
 import { SectionEyebrow } from '@/components/ui/misc'
+import { HeroBackdrop } from '@/sections/hero/hero-backdrop'
 import { MOTION_OK, ScrollTrigger, SplitText, gsap, useGSAP } from '@/lib/gsap'
 
 const LINE = '> paste 0x… → panel ready in 3.2s'
@@ -48,13 +49,18 @@ export function ClosingCta() {
   )
 
   return (
-    <div ref={root} className="grid gap-10 md:grid-cols-12 md:items-end">
-      <div className="md:col-span-7">
-        <SectionEyebrow signature="approve(address,uint256)" className="mb-5" />
-        <h2 data-cta-title className="max-w-[18ch] text-h2 md:text-[52px] md:leading-[58px]">
+    <div ref={root} className="relative">
+      <HeroBackdrop className="-bottom-40 -top-28 md:-top-40" />
+      <div className="relative flex flex-col items-center text-center">
+        <SectionEyebrow signature="approve(address,uint256)" className="mb-6 justify-center" />
+        <h2 data-cta-title className="max-w-[16ch] text-h2 md:text-[64px] md:leading-[68px] md:tracking-[-0.045em]">
           The fastest way to use a BOT Chain contract.
         </h2>
-        <div className="mt-8 flex flex-wrap gap-3">
+        <p aria-hidden className="mt-6 font-mono text-[14px] text-muted">
+          <span ref={typed}>{LINE}</span>
+          <span className="ml-0.5 inline-block h-4 w-px translate-y-0.5 animate-blink bg-read" />
+        </p>
+        <div className="mt-10 flex flex-wrap justify-center gap-3">
           <ButtonLink href="/app" size="lg">
             Open the studio
           </ButtonLink>
@@ -63,10 +69,6 @@ export function ClosingCta() {
           </ButtonLink>
         </div>
       </div>
-      <p aria-hidden className="font-mono text-[14px] text-muted md:col-span-5 md:pb-3">
-        <span ref={typed}>{LINE}</span>
-        <span className="ml-0.5 inline-block h-4 w-px translate-y-0.5 animate-blink bg-read" />
-      </p>
     </div>
   )
 }

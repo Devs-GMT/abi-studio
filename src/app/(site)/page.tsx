@@ -2,10 +2,11 @@ import { Capabilities } from '@/sections/capabilities/capabilities'
 import { ClosingCta } from '@/sections/closing-cta/closing-cta'
 import { ContractStrip } from '@/sections/contract-strip/contract-strip'
 import { Dashboard } from '@/sections/dashboard/dashboard'
-import { DemoWindow } from '@/sections/demo-window/demo-window'
 import { FeatureRow } from '@/sections/feature-row/feature-row'
 import { Hero } from '@/sections/hero/hero'
+import { LiveNetwork } from '@/sections/live-network/live-network'
 import { RevealController } from '@/sections/motion/reveal-controller'
+import { SectionEyebrow } from '@/components/ui/misc'
 import { Section, SectionHead } from '@/sections/shared'
 import { SignatureCloud } from '@/sections/signature-cloud/signature-cloud'
 import { UseCases } from '@/sections/use-cases/use-cases'
@@ -16,11 +17,8 @@ export default function HomePage() {
       {/* 1 · Hero */}
       <Hero />
 
-      {/* 2 · See your panel at work */}
-      <Section label="See your panel at work" className="px-4 pb-20 pt-14 md:px-12 md:pb-24 md:pt-16">
-        <SectionHead signature="getPanel(uint256)" title="See your panel at work" className="mb-10" />
-        <DemoWindow />
-      </Section>
+      {/* 2 · BOT Chain, live */}
+      <LiveNetwork />
 
       {/* 3 · Contract strip */}
       <ContractStrip />
@@ -43,24 +41,20 @@ export default function HomePage() {
           title="Underpinned by your ABI"
           intro="ABI Studio reads the types, so you don’t have to write a frontend to use them."
           className="mb-12"
+          align="center"
         />
         <SignatureCloud />
       </Section>
 
       {/* 6 · Feature row */}
       <Section label="Features" className="px-4 py-20 md:px-12 md:py-24">
-        <SectionHead signature="publish(address,uint32,string,string,uint8)" title="Small things that make a panel usable" className="mb-10" />
+        <SectionHead signature="publish(address,uint32,string,string,uint8)" title="Small things that make a panel usable" className="mb-10" align="stack" />
         <FeatureRow />
       </Section>
 
       {/* 7 · Use cases */}
-      <Section label="Use cases" className="px-4 py-20 md:px-12 md:py-28">
-        <SectionHead
-          signature="vote(uint8)"
-          title="Built for the moment before the frontend exists"
-          intro="No quotes, no logos — just the jobs people use a panel for."
-          className="mb-10"
-        />
+      <Section label="Use cases" className="px-4 py-16 md:px-12 md:py-20">
+        <SectionEyebrow signature="vote(uint8)" className="mb-2" />
         <UseCases />
       </Section>
 
@@ -71,13 +65,14 @@ export default function HomePage() {
           kind="event"
           title="Your contract at a glance"
           intro="Every panel’s Info and Events tabs add up to a picture of how the contract is used."
-          className="mb-10"
+          className="mb-12"
+          align="center"
         />
         <Dashboard />
       </Section>
 
       {/* 9 · Closing CTA */}
-      <Section label="Get started" className="px-4 py-24 md:px-12 md:py-32">
+      <Section label="Get started" className="overflow-hidden px-4 py-28 md:px-12 md:py-40">
         <ClosingCta />
       </Section>
       <RevealController />

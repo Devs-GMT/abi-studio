@@ -38,13 +38,30 @@ export function SectionHead({
   title,
   intro,
   className,
+  align = 'split',
 }: {
   signature: string
   kind?: 'function' | 'event'
   title: ReactNode
   intro?: ReactNode
   className?: string
+  /** split: title left, intro right · center: stacked and centred · stack: stacked, left */
+  align?: 'split' | 'center' | 'stack'
 }) {
+  if (align !== 'split')
+    return (
+      <div className={cn('flex flex-col', align === 'center' ? 'items-center text-center' : 'items-start', className)}>
+        <SectionEyebrow signature={signature} kind={kind} className={cn('mb-5', align === 'center' && 'justify-center')} />
+        <h2 data-reveal className={cn('text-h2', align === 'center' ? 'max-w-[20ch]' : 'max-w-[22ch]')}>
+          {title}
+        </h2>
+        {intro && (
+          <p data-reveal className={cn('mt-4 text-body-lg text-muted', align === 'center' ? 'max-w-[52ch]' : 'max-w-[56ch]')}>
+            {intro}
+          </p>
+        )}
+      </div>
+    )
   return (
     <div className={cn('grid gap-x-12 gap-y-4 md:grid-cols-12 md:items-end', className)}>
       <div className="md:col-span-7" data-reveal>
