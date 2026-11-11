@@ -173,7 +173,7 @@ Card `bg-panel rounded-card border border-line`, padding 16 px. In the ledger gr
 User feedback on v1: cards with glowing coloured edges looked AI-generated, every section had the same layout, and the site felt static. Rules since then:
 
 - **No coloured borders or edge bars on cards, toasts, menus or headers.** Colour lives only in text and data (selectors, values, chart bars, status dots) and in the primary button.
-- **The page must feel live.** The hero has a soft light from the top-left plus drifting dust (`HeroBackdrop` canvas). A full-bleed **LiveNetwork** section draws real BOT Chain transactions from the explorer as pulses into contract nodes. Both are paused off-screen; reduced motion gets a static frame.
+- **The page must feel live.** The hero has a soft light from the top-left plus drifting dust (`HeroBackdrop` canvas). A full-bleed live section shows real BOT Chain transactions from the explorer (now the split-flap `LiveBoard`, see Revision 3). Both are paused off-screen; reduced motion gets a static frame.
 - **Vary the layout per section:**
   - hero (centred, with the demo window inside it)
   - full-bleed canvas
@@ -183,6 +183,13 @@ User feedback on v1: cards with glowing coloured edges looked AI-generated, ever
   - **paper receipts** for the use cases: the one light surface, with a serif title (Instrument Serif)
   - a centred, lit CTA
 - `SectionHead` takes `align="split" | "center" | "stack"`. Don't use the same one twice in a row.
+
+### Revision 3 (2026-11-11)
+
+- **No pills.** No rounded-full bordered labels, chips or status capsules. Status = a small dot + plain (mono) text; filters = text with an underline on the active one. `Pill` now renders plain text. Exceptions: toggle switches, colour swatches, status dots, spinners.
+- **No em dashes in UI copy.** Use a full stop, colon, comma or parentheses instead. (`·` is fine as a separator.)
+- **No `+` crosshair ticks** on the rails.
+- The live section is a **split-flap departure board** (`LiveBoard`) of real BOT Chain calls (block, contract, method, age). Changed characters cycle through random glyphs before settling. It replaced the node-graph canvas, which read as generic.
 
 ## 8. Responsive
 

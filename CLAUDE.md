@@ -98,7 +98,7 @@ src/
 - Headlines are **weight 500 with tight negative tracking**, not bold. Body 14 px. Mono (Geist Mono) for every address, signature, hex, and number.
 - Layout is a **ruled ledger**: a 1px vertical rail around the content column, hairline section dividers, and card grids made with `gap-px` over a line-coloured background. No floating shadowed cards.
 - Radii: 8 px controls, 12 px cards, 16 px windows. Buttons are small (h-8/h-9).
-- **Banned (AI-slop tells):** purple→blue gradients, gradient text, glowing blobs/orbs behind the hero, glassmorphism stacks, emoji as icons, icons in tinted rounded squares, `rounded-3xl` everywhere, centred-everything layouts, bold 700 headlines, "Unlock / Supercharge / Seamless / Revolutionize / Empower / Leverage" copy, fake logos/quotes/stats, hover `scale-105` on cards, **coloured/glowing card edges**, the same section layout twice in a row.
+- **Banned (AI-slop tells):** purple→blue gradients, gradient text, glowing blobs/orbs behind the hero, glassmorphism stacks, emoji as icons, icons in tinted rounded squares, `rounded-3xl` everywhere, centred-everything layouts, bold 700 headlines, "Unlock / Supercharge / Seamless / Revolutionize / Empower / Leverage" copy, fake logos/quotes/stats, hover `scale-105` on cards, **coloured/glowing card edges**, the same section layout twice in a row, **pills** (rounded bordered labels/chips), **em dashes in UI copy**, `+` rail ticks, node-graph/particle-network backgrounds.
 
 ## Motion rules (summary; full detail in MOTION.md)
 
