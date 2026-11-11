@@ -95,7 +95,7 @@ npm i -D @types/qrcode vitest
 - [x] `/p/[id]`: `generateMetadata`, gateway fallback load, viewer mode, re-verified badge, unverified notice, not-found + hidden states, Fork into studio
 - [x] `/app/gallery` (ISR list + client search) and `/app/panels`
 - [x] ✂ `/api/opens` with Upstash (skip cleanly if the env is missing)
-- [ ] **Checkpoint (after registry deploy + PINATA_JWT):** publish a panel from a second browser profile → open `/p/<id>` in a private window without MetaMask → reads work
+- [x] **Checkpoint:** panel #1 (PanelRegistry, testnet) uploaded via `/api/upload` → Pinata and published on-chain with badge 2 (verified against Blockscout) → `/p/1` opens without a wallet, reads auto-load, badge re-verified live. (Publishing through the UI dialog with MetaMask still to be tried by hand.)
 
 ## Phase 5 · Website, static first (2.0 h)
 
