@@ -1,12 +1,15 @@
 import { ButtonLink } from '@/components/ui/button'
 import { FEATURED_PANEL_ID } from '@/config/site'
+import { DemoWindow } from '@/sections/demo-window/demo-window'
+import { HeroBackdrop } from './hero-backdrop'
 import { HeroHeadline, LiveBlockPill } from './hero-motion'
 
 export function Hero() {
   const live = FEATURED_PANEL_ID ? `/p/${FEATURED_PANEL_ID}` : '/app/gallery'
   return (
-    <section aria-label="Introduction" className="relative px-4 pb-16 pt-16 md:px-12 md:pb-20 md:pt-24">
-      <div className="flex flex-col items-center text-center">
+    <section aria-label="Introduction" className="relative px-4 pb-20 pt-16 md:px-12 md:pb-28 md:pt-24">
+      <HeroBackdrop />
+      <div className="relative flex flex-col items-center text-center">
         <div data-reveal className="mb-8">
           <LiveBlockPill />
         </div>
@@ -18,13 +21,13 @@ export function Hero() {
           <ButtonLink href="/app" size="lg">
             Open the studio
           </ButtonLink>
-          <ButtonLink href={live} size="lg" variant="ghost">
+          <ButtonLink href={live} size="lg" variant="ghost" className="bg-panel-2/60 backdrop-blur">
             See a live panel
           </ButtonLink>
         </div>
-        <p data-reveal className="mt-5 font-mono text-[12px] text-faint">
-          No sign-up · Your keys never leave your wallet
-        </p>
+      </div>
+      <div className="relative mt-16 md:mt-20">
+        <DemoWindow />
       </div>
     </section>
   )

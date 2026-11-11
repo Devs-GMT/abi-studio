@@ -59,6 +59,7 @@
 @theme inline {
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-serif: var(--font-instrument-serif), Georgia, serif;
 }
 
 /* ───────────── type scale (DESIGN_SYSTEM.md §4) ───────────── */
@@ -162,6 +163,7 @@
     -webkit-text-size-adjust: 100%;
   }
   body {
+    overflow-x: clip;
     background: var(--color-bg);
     color: var(--color-fg);
     font-family: var(--font-sans);
