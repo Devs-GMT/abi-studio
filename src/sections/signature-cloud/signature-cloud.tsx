@@ -21,24 +21,21 @@ const kindText: Record<Kind, string> = {
   type: 'text-muted',
 }
 
-const CARDS: { id: Exclude<Focus, null>; title: string; body: string; edge: string }[] = [
+const CARDS: { id: Exclude<Focus, null>; title: string; body: string }[] = [
   {
     id: 'inputs',
     title: 'Smart inputs',
     body: 'Every Solidity type gets the right field: address checksum, uint ranges, bool toggles, arrays as tags, bytes as hex, tuples as nested fields.',
-    edge: 'before:bg-write',
   },
   {
     id: 'results',
     title: 'Readable results',
     body: 'Big numbers as BOT with 18 decimals, timestamps as dates, structs as tables, every address one click from the explorer.',
-    edge: 'before:bg-read',
   },
   {
     id: 'events',
     title: 'Live events',
     body: 'Decoded as they land, with past events loaded in chunks and a per-hour sparkline.',
-    edge: 'before:bg-event',
   },
 ]
 
@@ -135,9 +132,8 @@ export function SignatureCloud() {
             onBlur={() => setFocus(null)}
             data-reveal
             className={cn(
-              'relative bg-bg px-6 py-6 outline-none transition-colors duration-200 before:absolute before:inset-y-6 before:left-0 before:w-0.5 before:opacity-0 before:transition-opacity hover:bg-panel focus-visible:bg-panel',
-              c.edge,
-              focus === c.id && 'before:opacity-100',
+              'relative bg-bg px-6 py-6 outline-none transition-colors duration-200 hover:bg-panel focus-visible:bg-panel',
+              focus === c.id && 'bg-panel',
             )}
           >
             <h3 className="text-h4">{c.title}</h3>

@@ -9,10 +9,10 @@ import { cn } from '@/lib/cn'
 import { ConnectButton } from '@/features/wallet'
 
 const PRODUCT = [
-  { title: 'Read', body: 'Call any view function. Results formatted, structs as tables.', edge: 'before:bg-read', href: '/#capabilities' },
-  { title: 'Write', body: 'Typed inputs, gas estimate, a preview of exactly what you send.', edge: 'before:bg-write', href: '/#capabilities' },
-  { title: 'Events', body: 'Live feed and past logs, decoded, with a per-hour sparkline.', edge: 'before:bg-event', href: '/#capabilities' },
-  { title: 'Panels', body: 'Customise, publish on-chain, share one link.', edge: 'before:bg-fg', href: '/app/gallery' },
+  { title: 'Read', body: 'Call any view function. Results formatted, structs as tables.', href: '/#capabilities' },
+  { title: 'Write', body: 'Typed inputs, gas estimate, a preview of exactly what you send.', href: '/#capabilities' },
+  { title: 'Events', body: 'Live feed and past logs, decoded, with a per-hour sparkline.', href: '/#capabilities' },
+  { title: 'Panels', body: 'Customise, publish on-chain, share one link.', href: '/app/gallery' },
 ]
 
 function MegaMenu({ onNavigate }: { onNavigate: () => void }) {
@@ -26,8 +26,6 @@ function MegaMenu({ onNavigate }: { onNavigate: () => void }) {
               onClick={onNavigate}
               className={cn(
                 'relative block h-full px-5 py-4 pl-6 transition-colors hover:bg-panel-2',
-                'before:absolute before:bottom-4 before:left-0 before:top-4 before:w-0.5',
-                p.edge,
               )}
             >
               <span className="block text-[14px] font-medium">{p.title}</span>
@@ -37,7 +35,7 @@ function MegaMenu({ onNavigate }: { onNavigate: () => void }) {
         ))}
       </ul>
       <div className="flex flex-col justify-between bg-panel p-4">
-        <div className="relative overflow-hidden rounded-ctl border border-line bg-bg py-3 pl-4 pr-3 before:absolute before:inset-y-0 before:left-0 before:w-0.5 before:bg-write">
+        <div className="relative overflow-hidden rounded-ctl border border-line bg-bg py-3 pl-4 pr-3">
           <code className="block font-mono text-[12px]">
             vote<span className="text-faint">(</span>
             <span className="text-muted">uint8</span>

@@ -58,11 +58,11 @@ export const toast = {
   dismiss: (id: string) => useToasts.getState().dismiss(id),
 }
 
-const toneEdge: Record<ToastTone, string> = {
-  pending: 'before:bg-write',
-  ok: 'before:bg-ok',
-  error: 'before:bg-danger',
-  info: 'before:bg-read',
+const toneDot: Record<ToastTone, string> = {
+  pending: 'bg-muted animate-pulse',
+  ok: 'bg-ok',
+  error: 'bg-danger',
+  info: 'bg-muted',
 }
 
 export function Toaster() {
@@ -79,12 +79,11 @@ export function Toaster() {
           role="status"
           className={cn(
             'pointer-events-auto relative w-full max-w-sm overflow-hidden rounded-card border border-line-2 bg-panel py-3 pl-4 pr-10 shadow-[0_20px_60px_-20px_rgb(0_0_0/0.8)]',
-            'before:absolute before:inset-y-0 before:left-0 before:w-0.5',
-            toneEdge[t.tone],
           )}
         >
-          <div className={cn('text-[13px] font-medium', t.tone === 'pending' && 'shimmer-text [--shimmer-base:#a78bfa]')}>
-            {t.title}
+          <div className="flex items-center gap-2 text-[13px] font-medium">
+            <span aria-hidden className={cn('size-1.5 shrink-0 rounded-full', toneDot[t.tone])} />
+            <span className={cn(t.tone === 'pending' && 'shimmer-text')}>{t.title}</span>
           </div>
           {t.body && <div className="mt-1 text-[12px] text-muted">{t.body}</div>}
           <button

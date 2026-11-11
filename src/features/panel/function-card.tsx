@@ -8,12 +8,6 @@ import { cn } from '@/lib/cn'
 
 export type CardKind = 'read' | 'write' | 'event'
 
-const edge: Record<CardKind, string> = {
-  read: 'before:bg-read',
-  write: 'before:bg-write',
-  event: 'before:bg-event',
-}
-
 /** Mono signature: `name(type name, …) → returns`. */
 export function Signature({ info, className }: { info: FnInfo; className?: string }) {
   const f = info.fragment
@@ -56,9 +50,7 @@ export function FunctionCard({ info, kind, meta, children, onHistory, className,
     <article
       aria-label={meta?.label ?? info.key}
       className={cn(
-        'group/card relative mb-4 break-inside-avoid overflow-hidden rounded-card border border-line bg-panel pl-[18px] pr-4 pb-4 pt-3.5',
-        'before:absolute before:inset-y-0 before:left-0 before:w-0.5',
-        edge[kind],
+        'group/card relative mb-4 break-inside-avoid overflow-hidden rounded-card border border-line bg-panel px-4 pb-4 pt-3.5',
         className,
       )}
     >
@@ -66,16 +58,17 @@ export function FunctionCard({ info, kind, meta, children, onHistory, className,
         <span
           key={glowKey}
           aria-hidden
-          className={cn(
-            'pointer-events-none absolute inset-0 rounded-card opacity-0 [animation:card-glow_900ms_var(--ease-quad)_1]',
-            kind === 'read' ? 'shadow-[inset_0_0_0_1px_rgb(61_214_245/0.5)]' : 'shadow-[inset_0_0_0_1px_rgb(139_92_246/0.55)]',
-          )}
+          className="pointer-events-none absolute inset-0 rounded-card bg-fg/[0.035] opacity-0 [animation:card-glow_900ms_var(--ease-quad)_1]"
         />
       ) : null}
       <header className="mb-3 flex items-start gap-2">
         <div className="min-w-0 flex-1">
           {meta?.label && <p className="mb-0.5 text-[14px] font-medium text-fg">{meta.label}</p>}
           <Signature info={info} />
+          <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.08em] text-faint">
+            {kind === 'event' ? 'event' : info.fragment.stateMutability}
+            {info.overloaded && ' · overload'}
+          </p>
           {meta?.note && <p className="mt-1.5 text-[13px] leading-5 text-muted">{meta.note}</p>}
         </div>
         {onHistory && (

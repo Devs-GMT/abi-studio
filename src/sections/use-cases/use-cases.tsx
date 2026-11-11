@@ -45,7 +45,7 @@ const SLIDES = [
     title: 'Give your community a voting page in 1 minute.',
     body: 'Load the ABI, hide the admin functions, add a note: “Use option 0–3”.',
     artefact: (
-      <div className="relative overflow-hidden rounded-ctl border border-line bg-bg py-3 pl-4 pr-3 before:absolute before:inset-y-0 before:left-0 before:w-0.5 before:bg-write">
+      <div className="relative overflow-hidden rounded-ctl border border-line bg-bg py-3 pl-4 pr-3">
         <p className="text-[13px] font-medium">Cast your vote</p>
         <code className="font-mono text-[12px] text-muted">vote(uint8 option)</code>
         <p className="mt-1 text-[12px] text-muted">Use option 0–3</p>

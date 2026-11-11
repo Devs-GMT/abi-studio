@@ -80,7 +80,7 @@ export function RegistryMiniPanel({ initialTotal }: { initialTotal: number | nul
   return (
     <div
       ref={root}
-      className="relative overflow-hidden rounded-card border border-line-2 bg-panel pl-[18px] before:absolute before:inset-y-0 before:left-0 before:w-0.5 before:bg-read"
+      className="relative overflow-hidden rounded-card border border-line-2 bg-panel pl-4"
     >
       <div className="flex items-center justify-between gap-3 border-b border-line py-3 pr-4">
         <p className="font-mono text-[12px] text-muted">

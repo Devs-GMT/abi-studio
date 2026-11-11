@@ -34,13 +34,12 @@ function Cursor() {
   )
 }
 
-function Card({ edge, children, className, ...rest }: { edge: 'read' | 'write' | 'event'; children: React.ReactNode; className?: string } & React.HTMLAttributes<HTMLDivElement>) {
+function Card({ children, className, ...rest }: { edge?: 'read' | 'write' | 'event'; children: React.ReactNode; className?: string } & React.HTMLAttributes<HTMLDivElement>) {
   return (
     <div
       {...rest}
       className={cn(
-        'relative overflow-hidden rounded-[10px] border border-line bg-panel py-3 pl-4 pr-3 before:absolute before:inset-y-0 before:left-0 before:w-0.5',
-        edge === 'read' ? 'before:bg-read' : edge === 'write' ? 'before:bg-write' : 'before:bg-event',
+        'relative overflow-hidden rounded-[10px] border border-line bg-panel py-3 pl-4 pr-3',
         className,
       )}
     >
@@ -233,7 +232,7 @@ export function DemoWindow() {
           })
           tl.to(q('[data-spark-last]'), { scaleY: 1, duration: 0.8, ease: 'expo.out' }, 12.6)
           tl.to(cursor, { x: 900, y: 470, autoAlpha: 0, duration: 0.8 }, 12.0)
-          // 13.5 — back to "Working…"
+          // 13.5 — back to"Working…"
           tl.to(q('[data-status="ok"]'), { autoAlpha: 0, duration: 0.2 }, 13.5)
           tl.to(q('[data-status="idle"]'), { autoAlpha: 1, duration: 0.2 }, 13.5)
           // 15.0 — fade before the loop restarts
