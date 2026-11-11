@@ -1,32 +1,24 @@
 import type { ReactNode } from 'react'
-import { SectionEyebrow, RailTick } from '@/components/ui/misc'
+import { SectionEyebrow } from '@/components/ui/misc'
 import { cn } from '@/lib/cn'
 
 /** Content column inside the rails. */
 export const INNER = 'px-4 md:px-12'
 
-/** A ruled section: hairline on top, `+` ticks where it meets the rails. */
+/** A ruled section: hairline on top, rails on the sides (md+). */
 export function Section({
   id,
   children,
   className,
   label,
-  ticks = true,
 }: {
   id?: string
   children: ReactNode
   className?: string
   label?: string
-  ticks?: boolean
 }) {
   return (
     <section id={id} aria-label={label} className={cn('relative border-t border-line md:border-x', className)}>
-      {ticks && (
-        <>
-          <RailTick className="-left-[5px] -top-[5px] hidden md:block" />
-          <RailTick className="-right-[5px] -top-[5px] hidden md:block" />
-        </>
-      )}
       {children}
     </section>
   )

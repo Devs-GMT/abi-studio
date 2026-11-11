@@ -64,15 +64,6 @@ export function WindowFrame({
   )
 }
 
-/** Small `+` mark where a section divider meets a rail. Decorative. */
-export function RailTick({ className }: { className?: string }) {
-  return (
-    <svg aria-hidden viewBox="0 0 9 9" className={cn('pointer-events-none absolute size-[9px] text-faint', className)}>
-      <path d="M4.5 0v9M0 4.5h9" stroke="currentColor" strokeWidth="1" />
-    </svg>
-  )
-}
-
 export function Spinner({ className }: { className?: string }) {
   return (
     <span
