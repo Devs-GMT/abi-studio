@@ -6,7 +6,7 @@ import type { ChainId } from './chains'
  */
 export const REGISTRY_ADDRESSES: Record<ChainId, string> = {
   677: '',
-  968: '',
+  968: '0x6fABadD7EB87EEFC381A180401b989C929DB1278',
 }
 
 const envChain = Number(process.env.NEXT_PUBLIC_REGISTRY_CHAIN)

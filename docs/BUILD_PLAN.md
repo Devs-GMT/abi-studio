@@ -56,8 +56,8 @@ npm i -D @types/qrcode vitest
 ## Phase 1 · Contract on testnet (0.5 h)
 
 - [x] Compile `contracts/PanelRegistry.sol` (verified with solc 0.8.24, opt 200, paris — clean)
-- [ ] **(needs your wallet)** Deploy to testnet 968, run the test list in CONTRACT.md §Compile & deploy
-- [ ] Save the testnet address in `config/site.ts` as `REGISTRY_TESTNET` (used in dev via `NEXT_PUBLIC_REGISTRY_CHAIN=968`)
+- [x] Deploy to testnet 968 (`0x6fAB…1278`, burner deployer) and run the CONTRACT.md test list: 17/17 pass (`npm run test:registry -- 968`)
+- [x] Testnet address in `REGISTRY_ADDRESSES[968]`; dev uses it via `NEXT_PUBLIC_REGISTRY_CHAIN=968`
 
 ## Phase 2 · `lib/` core + tests (1.5 h)
 

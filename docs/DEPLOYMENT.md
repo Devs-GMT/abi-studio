@@ -46,8 +46,23 @@ See CONTRACT.md §Compile & deploy. After deploying:
 ```
 PanelRegistry (mainnet 677): 0x________________________________________
 Deployed in tx:              0x________________________________________
-PanelRegistry (testnet 968): 0x________________________________________
+PanelRegistry (testnet 968): 0x6fABadD7EB87EEFC381A180401b989C929DB1278
+Deployed in tx (968):        0x258abb6ade5b2fdb316284fd17314ab2f61d90e5bebfa73655b1203c468cbfed (block 30,022,364)
+Curator (968):               0xAeaD05d40034B2248FB9a6051341c465BB3Ac9D3 (burner, testnet only)
 ```
+
+### Scripted deploy (alternative to Remix)
+
+`DEPLOYER_PRIVATE_KEY` lives in `.env.local` (git-ignored). Then:
+
+```bash
+npm run deploy:registry -- 968   # compile (0.8.24, opt 200, paris), deploy, smoke-test, write the address to src/config/site.ts
+npm run test:registry -- 968     # the CONTRACT.md test list on-chain (reverts via staticCall; at most one real publish)
+```
+
+The testnet run passed all 17 checks. Panel #0 is a test panel with a placeholder CID and is hidden by the curator.
+
+For **mainnet**, use a wallet you control (not the burner), since it becomes the curator.
 
 ## Smoke test (production)
 
