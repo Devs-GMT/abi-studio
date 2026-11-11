@@ -24,9 +24,7 @@ export function HeroHeadline() {
         tl.fromTo(lines, { y: 0, yPercent: 105, autoAlpha: 1 }, { y: 0, yPercent: 0, duration: 1.0, ease: 'expo.out', stagger: 0.08 })
         gsap.set(slots, { y: 0, yPercent: 110, autoAlpha: 0 })
         gsap.set(slots[0], { y: 0, yPercent: 0, autoAlpha: 1 })
-        const cs = getComputedStyle(pill)
-        const chrome = parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight) + parseFloat(cs.borderLeftWidth) + parseFloat(cs.borderRightWidth)
-        const widthOf = (el: HTMLElement) => el.getBoundingClientRect().width + chrome
+        const widthOf = (el: HTMLElement) => el.getBoundingClientRect().width
         pill.style.width = `${widthOf(slots[0])}px`
         slots.forEach((el, i) => {
           if (i === 0) return
@@ -53,13 +51,13 @@ export function HeroHeadline() {
           Any
           <span
             data-pill
-            className="relative inline-grid h-[1.05em] translate-y-[0.08em] overflow-hidden rounded-[0.18em] border border-line-2 bg-panel px-[0.22em] align-baseline font-mono text-[0.78em] font-normal tracking-[-0.04em] text-fg"
+            className="relative inline-grid overflow-hidden py-[0.06em] align-baseline text-[#a9aeb8]"
           >
             {WORDS.map((w, i) => (
               <span
                 key={w}
                 data-word
-                className={i === WORDS.length - 1 ? 'col-start-1 row-start-1 justify-self-start whitespace-nowrap leading-[1.3]' : 'invisible col-start-1 row-start-1 justify-self-start whitespace-nowrap leading-[1.3]'}
+                className={i === WORDS.length - 1 ? 'col-start-1 row-start-1 justify-self-start whitespace-nowrap leading-[1.12]' : 'invisible col-start-1 row-start-1 justify-self-start whitespace-nowrap leading-[1.12]'}
               >
                 {w}
               </span>
