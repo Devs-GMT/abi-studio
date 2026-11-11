@@ -4,7 +4,7 @@ import { ContractStrip } from '@/sections/contract-strip/contract-strip'
 import { Dashboard } from '@/sections/dashboard/dashboard'
 import { FeatureRow } from '@/sections/feature-row/feature-row'
 import { Hero } from '@/sections/hero/hero'
-import { LiveNetwork } from '@/sections/live-network/live-network'
+import { LiveBoard } from '@/sections/live-board/live-board'
 import { RevealController } from '@/sections/motion/reveal-controller'
 import { SectionEyebrow } from '@/components/ui/misc'
 import { Section, SectionHead } from '@/sections/shared'
@@ -18,7 +18,7 @@ export default function HomePage() {
       <Hero />
 
       {/* 2 · BOT Chain, live */}
-      <LiveNetwork />
+      <LiveBoard />
 
       {/* 3 · Contract strip */}
       <ContractStrip />
