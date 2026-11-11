@@ -94,11 +94,11 @@ src/
 
 ## UI rules (summary; full detail in DESIGN_SYSTEM.md)
 
-- Near-black `#08090A`, hairline `#23262D` borders, panels `#111317`/`#16191F`. Colour is **semantic only**: cyan = read/primary, violet = write, amber = events, green = success, red = danger.
+- Near-black `#08090A`, hairline `#23262D` borders, panels `#111317`/`#16191F`. Colour is **semantic only** (cyan = read/primary, violet = write, amber = events, green = success, red = danger) and lives in text, data and status dots. **Never on card borders or edge bars** (see DESIGN_SYSTEM §7b).
 - Headlines are **weight 500 with tight negative tracking**, not bold. Body 14 px. Mono (Geist Mono) for every address, signature, hex, and number.
 - Layout is a **ruled ledger**: a 1px vertical rail around the content column, hairline section dividers, and card grids made with `gap-px` over a line-coloured background. No floating shadowed cards.
 - Radii: 8 px controls, 12 px cards, 16 px windows. Buttons are small (h-8/h-9).
-- **Banned (AI-slop tells):** purple→blue gradients, gradient text, glowing blobs/orbs behind the hero, glassmorphism stacks, emoji as icons, icons in tinted rounded squares, `rounded-3xl` everywhere, centred-everything layouts, bold 700 headlines, "Unlock / Supercharge / Seamless / Revolutionize / Empower / Leverage" copy, fake logos/quotes/stats, hover `scale-105` on cards.
+- **Banned (AI-slop tells):** purple→blue gradients, gradient text, glowing blobs/orbs behind the hero, glassmorphism stacks, emoji as icons, icons in tinted rounded squares, `rounded-3xl` everywhere, centred-everything layouts, bold 700 headlines, "Unlock / Supercharge / Seamless / Revolutionize / Empower / Leverage" copy, fake logos/quotes/stats, hover `scale-105` on cards, **coloured/glowing card edges**, the same section layout twice in a row.
 
 ## Motion rules (summary; full detail in MOTION.md)
 

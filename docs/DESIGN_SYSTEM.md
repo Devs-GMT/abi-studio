@@ -120,15 +120,16 @@ Rules:
 **Function card** (the core object, used in the app *and* in marketing mockups)
 
 ```
-┌─▌───────────────────────────────────────────┐  left edge 2px: read|write|event colour
-│ ▌ balanceOf(address) → uint256     [⋯] [⧉]  │  mono 13, return type in muted
-│ ▌ "Check any wallet's balance"              │  user note (optional, muted italic-free)
-│ ▌ ┌ account  address ───────────────────┐   │  label + type tag (mono-sm, faint)
-│ ▌ │ 0x…                                 │   │  input h-9, bg-bg, border-line-2
-│ ▌ └─────────────────────────────────────┘   │
-│ ▌ [ Call ]                       18 ms      │
-│ ▌ ─────────────────────────────────────     │
-│ ▌ 1,250.00 BOT   ◻ as BOT (18 decimals)     │  result: glow ring read/40 for 900ms on update
+┌─────────────────────────────────────────────┐  plain hairline card — NO coloured edge
+│ balanceOf(address) → uint256        [⋯]     │  mono 13, return type in muted
+│ VIEW                                        │  stateMutability, mono 10 uppercase, faint
+│ "Check any wallet's balance"              │  user note (optional, muted italic-free)
+│ ┌ account  address ───────────────────┐   │  label + type tag (mono-sm, faint)
+│ │ 0x…                                 │   │  input h-9, bg-bg, border-line-2
+│ └─────────────────────────────────────┘   │
+│ [ Call ]                       18 ms      │
+│ ─────────────────────────────────────     │
+│ 1,250.00 BOT   ◻ as BOT (18 decimals)     │  result: neutral bg flash (fg/3.5%) for 900 ms on update
 └─────────────────────────────────────────────┘
 ```
 
@@ -166,6 +167,22 @@ Card `bg-panel rounded-card border border-line`, padding 16 px. In the ledger gr
 - Give each section a different rhythm and density; let some breathe and pack others
 - Write labels a developer would write: `Call`, `Send transaction`, `Load past events`, `View on explorer ↗`
 - Use real selectors, real chain IDs, and real block numbers (live where possible)
+
+## 7b. Revision 2 — "less slop, more alive" (2026-11-11)
+
+User feedback on v1: cards with glowing coloured edges looked AI-generated, every section had the same layout, and the site felt static. Rules since then:
+
+- **No coloured borders or edge bars on cards, toasts, menus or headers.** Colour lives only in text and data (selectors, values, chart bars, status dots) and in the primary button.
+- **The page must feel live.** The hero has a soft light from the top-left plus drifting dust (`HeroBackdrop` canvas). A full-bleed **LiveNetwork** section draws real BOT Chain transactions from the explorer as pulses into contract nodes. Both are paused off-screen; reduced motion gets a static frame.
+- **Vary the layout per section:**
+  - hero (centred, with the demo window inside it)
+  - full-bleed canvas
+  - split head + **folder tabs** (capabilities)
+  - centred head (cloud, dashboard)
+  - stacked head (features)
+  - **paper receipts** for the use cases: the one light surface, with a serif title (Instrument Serif)
+  - a centred, lit CTA
+- `SectionHead` takes `align="split" | "center" | "stack"`. Don't use the same one twice in a row.
 
 ## 8. Responsive
 
