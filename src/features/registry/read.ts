@@ -5,30 +5,24 @@ import { REGISTRY_ABI } from './abi'
 
 export const registryIface = new Interface(REGISTRY_ABI)
 
-type RawPanel = {
-  publisher: string
-  target: string
-  chainId: bigint
-  name: string
-  cid: string
-  badge: bigint
-  opens: bigint
-  at: bigint
-  hidden: boolean
-}
+/**
+ * A decoded Panel tuple. ethers returns a Result (an Array subclass), so read by index:
+ * `p.at` would be Array.prototype.at, not the struct field.
+ */
+type RawPanel = readonly [string, string, bigint, string, string, bigint, bigint, bigint, boolean]
 
 export function toRecord(id: number, p: RawPanel): PanelRecord {
   return {
     id,
-    publisher: p.publisher,
-    target: p.target,
-    chainId: Number(p.chainId),
-    name: p.name,
-    cid: p.cid,
-    badge: Math.min(2, Number(p.badge)) as 0 | 1 | 2,
-    opens: Number(p.opens),
-    at: Number(p.at),
-    hidden: p.hidden,
+    publisher: p[0],
+    target: p[1],
+    chainId: Number(p[2]),
+    name: p[3],
+    cid: p[4],
+    badge: Math.min(2, Number(p[5])) as 0 | 1 | 2,
+    opens: Number(p[6]),
+    at: Number(p[7]),
+    hidden: p[8],
   }
 }
 
