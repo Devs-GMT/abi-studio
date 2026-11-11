@@ -88,6 +88,22 @@ export function outputsToDisplay(fragment: FunctionFragment, result: ArrayLike<u
   }))
 }
 
+/** Shorter one-line text for dense lists: short addresses, grouped numbers. */
+export function displayToShortText(d: Display): string {
+  switch (d.kind) {
+    case 'address':
+      return `${d.value.slice(0, 6)}…${d.value.slice(-4)}`
+    case 'int':
+      return d.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+    case 'array':
+      return `[${d.items.map(displayToShortText).join(', ')}]`
+    case 'tuple':
+      return `(${d.fields.map((f) => displayToShortText(f.value)).join(', ')})`
+    default:
+      return displayToText(d)
+  }
+}
+
 /** Compact one-line text for a display value (history drawer, event rows, previews). */
 export function displayToText(d: Display): string {
   switch (d.kind) {

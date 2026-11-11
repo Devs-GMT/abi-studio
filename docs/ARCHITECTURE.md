@@ -188,7 +188,7 @@ errors: user rejected (4001) · reverted (decode) · RPC (retry)
 
 ### Events
 
-- **Live:** subscribe via `provider.on({ address }, log => iface.parseLog(log))`. Ethers polls over HTTP (pollingInterval 2000 ms). Newest first, capped at 500 rows.
+- **Live:** our own 2 s poll loop: `getBlockNumber()` → `getLogs({ address, fromBlock: last+1, toBlock: n })` → `iface.parseLog`. (Not `provider.on/off`: those are async and race under React StrictMode's double-mount, leaving a dead subscription.) Newest first, capped at 500 rows; paused while the tab is hidden.
 - **Past:** `lib/events/chunks` walks back from head with a 50,000-block range. On an RPC error it halves (min 2,000); after 3 fast successes it doubles (max 200,000). Progress = blocks scanned / requested. The user chooses: last 1h / 24h / 7d / from block N.
 
 ### Publish
@@ -218,7 +218,7 @@ client: fetch CID via gateway fallback → zod parse → PanelRenderer(viewer)
 
 ## 7. Server-side registry reads
 
-Server Components call `features/registry/server.ts` (an ethers `JsonRpcProvider` with `staticNetwork` so it doesn't probe the chain on every request). ISR (`export const revalidate = 300`) provides the caching. Wrap each call in try/catch: a slow RPC must never break the landing page. Fall back to an empty list and hide the dependent UI.
+Server Components call `features/registry/server.ts` (an ethers `JsonRpcProvider` with `staticNetwork` so it doesn't probe the chain on every request). The app runs Next 16 with **Cache Components** (`cacheComponents: true`), so caching is `'use cache'` + `cacheLife('minutes')` inside those readers — not `export const revalidate`. Anything uncached or request-dependent (e.g. `await params`) sits inside `<Suspense>`. Wrap each call in try/catch: a slow RPC must never break the landing page. Fall back to an empty list and hide the dependent UI.
 
 ## 8. Testing
 

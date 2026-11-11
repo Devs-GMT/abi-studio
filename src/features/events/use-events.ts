@@ -111,20 +111,42 @@ export function useEvents(chainId: ChainId, address: string, iface: Interface, h
     [chainId, head],
   )
 
-  // Live subscription (ethers polls eth_getLogs per new block).
+  // Live feed: our own poll loop (block number → getLogs for the new range).
+  // Deterministic under StrictMode double-mount, unlike provider.on/off which are async.
   useEffect(() => {
     if (!live || !hasEvents) return
     const provider = readProvider(chainId)
-    const filter = { address }
-    const onLog = (log: Log) => {
-      const r = parse(iface, log)
-      if (!r) return
-      r.ts = Math.floor(Date.now() / 1000)
-      setRows((prev) => (prev.some((x) => x.key === r.key) ? prev : [r, ...prev].sort(sortDesc).slice(0, LIVE_CAP)))
+    let alive = true
+    let last: number | null = null
+    let timer: ReturnType<typeof setTimeout>
+    const tick = async () => {
+      try {
+        if (!document.hidden) {
+          const n = await provider.getBlockNumber()
+          if (last === null) last = n
+          else if (n > last) {
+            const from = Math.max(last + 1, n - 2_000)
+            const logs = await provider.getLogs({ address, fromBlock: from, toBlock: n })
+            last = n
+            const now = Math.floor(Date.now() / 1000)
+            const parsed = logs.map((l) => parse(iface, l)).filter((r): r is EventRow => !!r)
+            parsed.forEach((r) => (r.ts = now))
+            if (alive && parsed.length)
+              setRows((prev) => {
+                const keys = new Set(prev.map((x) => x.key))
+                return [...parsed.filter((r) => !keys.has(r.key)), ...prev].sort(sortDesc).slice(0, Math.max(LIVE_CAP, prev.length))
+              })
+          }
+        }
+      } catch {
+        /* transient RPC error: try again next tick */
+      }
+      if (alive) timer = setTimeout(tick, 2000)
     }
-    provider.on(filter, onLog)
+    void tick()
     return () => {
-      provider.off(filter, onLog)
+      alive = false
+      clearTimeout(timer)
     }
   }, [live, hasEvents, chainId, address, iface])
 

@@ -23,8 +23,8 @@ export const FEATURED_PANEL_ID = process.env.NEXT_PUBLIC_FEATURED_PANEL_ID || ''
 
 export function siteUrl() {
   if (process.env.NEXT_PUBLIC_SITE_URL) return process.env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, '')
-  if (process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL)
-    return `https://${process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL}`
+  const vercel = process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL ?? process.env.VERCEL_PROJECT_PRODUCTION_URL
+  if (vercel) return `https://${vercel}`
   if (typeof window !== 'undefined') return window.location.origin
   return 'http://localhost:3000'
 }

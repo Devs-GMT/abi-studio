@@ -9,7 +9,7 @@ import { Dot } from '@/components/ui/pill'
 import { Spinner } from '@/components/ui/misc'
 import { blocksPerHour, explorerTx } from '@/config/chains'
 import { hourlyBuckets } from '@/lib/events/rate'
-import { displayToText } from '@/lib/format/value'
+import { displayToShortText } from '@/lib/format/value'
 import { formatThousands, relativeTime, shortHash } from '@/lib/format/units'
 import { cn } from '@/lib/cn'
 import { usePanel } from '@/stores/panel-store'
@@ -166,13 +166,17 @@ function EventItem({ row, chainId }: { row: EventRow; chainId: 677 | 968 }) {
         type="button"
         onClick={() => setOpen((o) => !o)}
         aria-expanded={open}
-        className="grid w-full grid-cols-[minmax(0,1fr)_auto] items-baseline gap-x-4 gap-y-1 px-4 py-2.5 text-left hover:bg-panel-2 md:grid-cols-[160px_minmax(0,1fr)_auto]"
+        className="grid w-full grid-cols-[minmax(0,1fr)_auto] items-baseline gap-x-4 gap-y-1 px-4 py-2.5 text-left hover:bg-panel-2 md:grid-cols-[150px_minmax(0,1fr)_auto]"
       >
-        <span className="truncate font-mono text-[13px] text-event">{row.name}</span>
-        <span className="col-span-2 row-start-2 truncate font-mono text-[12px] text-muted md:col-span-1 md:row-start-auto">
-          {row.args.map((a) => `${a.name} ${displayToText(a.value).slice(0, 24)}`).join('  ')}
+        <span className="col-start-1 row-start-1 truncate font-mono text-[13px] text-event">{row.name}</span>
+        <span className="col-span-2 col-start-1 row-start-2 truncate font-mono text-[12px] md:col-span-1 md:col-start-2 md:row-start-1">
+          {row.args.map((a, i) => (
+            <span key={i} className="mr-3">
+              <span className="text-faint">{a.name}</span> <span className="text-muted">{displayToShortText(a.value)}</span>
+            </span>
+          ))}
         </span>
-        <span className="col-start-2 row-start-1 whitespace-nowrap text-right font-mono text-[11px] text-faint md:col-start-auto">
+        <span className="col-start-2 row-start-1 whitespace-nowrap text-right font-mono text-[11px] text-faint md:col-start-3">
           #{formatThousands(row.block)}
           {row.ts ? ` · ${row.approx ? '≈' : ''}${relativeTime(row.ts)}` : ''}
         </span>

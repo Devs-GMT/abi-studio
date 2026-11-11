@@ -26,7 +26,16 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`} suppressHydrationWarning>
+      <head>
+        {/* Enables pre-hidden reveal states; falls back to visible if GSAP never starts. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "(function(d){d.classList.add('js-motion');setTimeout(function(){if(!d.dataset.revealReady)d.classList.add('motion-fallback')},3500)})(document.documentElement)",
+          }}
+        />
+      </head>
       <body className="min-h-dvh bg-bg text-fg">
         <a
           href="#main"

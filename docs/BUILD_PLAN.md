@@ -18,6 +18,20 @@ Phases run in order; tasks within a phase can be parallel. Tick `[x]` as you go.
 
 ---
 
+## Status (2026-11-11)
+
+Phases 0, 2, 3, 5 and 6 are done. Phases 4 and 7 are done except the items still unticked below.
+
+Verified in a real browser against BOT Chain mainnet (WBOT `0xD545…bd30`):
+
+- reads;
+- write preview and gas estimate;
+- live events, plus 1,136 past events from the last hour;
+- Info and Customise;
+- the Publish dialog in its registry-not-deployed state.
+
+What remains needs your wallet or keys: the Phase 1 deploy, the Phase 4 checkpoints, and Phase 8.
+
 ## Phase 0 · Scaffold (1.0 h)
 
 `create-next-app` refuses a folder that already holds `CLAUDE.md`/`contracts/`, so scaffold into a temp folder and move it up:
@@ -29,100 +43,100 @@ npm i ethers gsap @gsap/react zustand zod @dnd-kit/core @dnd-kit/sortable @dnd-k
 npm i -D @types/qrcode vitest
 ```
 
-- [ ] Scaffold moved to root; `git init`; first commit
-- [ ] `package.json` scripts: `typecheck` (`tsc --noEmit`), `test` (`vitest run`)
-- [ ] `globals.css` with `@theme` tokens + type utilities (DESIGN_SYSTEM §3–4); `body` bg/fg; selection colour `bg-read/30`
-- [ ] Fonts: `Geist`, `Geist_Mono` from `next/font/google` → CSS vars `--font-geist`, `--font-geist-mono`
-- [ ] `config/chains.ts`, `config/site.ts` (registry address placeholder `0x000…` + `REGISTRY_DEPLOYED=false` guard)
-- [ ] `lib/cn.ts`, `lib/gsap.ts`
-- [ ] UI primitives: Button, Pill, Tabs, Card, Input, Textarea, Toggle, TagInput, Tooltip, Toast, Drawer, Dialog, CopyButton, Mono, Skeleton, Logo, SectionEyebrow, LedgerGrid, Rail, ShimmerText
-- [ ] `/dev/ui` route (dev-only, `notFound()` in prod) rendering every primitive for visual checks
-- [ ] ESLint `no-restricted-imports` for feature internals
+- [x] Scaffold moved to root; `git init`; first commit
+- [x] `package.json` scripts: `typecheck` (`tsc --noEmit`), `test` (`vitest run`)
+- [x] `globals.css` with `@theme` tokens + type utilities (DESIGN_SYSTEM §3–4); `body` bg/fg; selection colour `bg-read/30`
+- [x] Fonts: `Geist`, `Geist_Mono` from `next/font/google` → CSS vars `--font-geist`, `--font-geist-mono`
+- [x] `config/chains.ts`, `config/site.ts` (registry address placeholder `0x000…` + `REGISTRY_DEPLOYED=false` guard)
+- [x] `lib/cn.ts`, `lib/gsap.ts`
+- [x] UI primitives: Button, Pill, Tabs, Card, Input, Textarea, Toggle, TagInput, Tooltip, Toast, Drawer, Dialog, CopyButton, Mono, Skeleton, Logo, SectionEyebrow, LedgerGrid, Rail, ShimmerText
+- [ ] ✂ `/dev/ui` route (dev-only primitives page)
+- [ ] ✂ ESLint `no-restricted-imports` for feature internals (convention followed by hand for now)
 
 ## Phase 1 · Contract on testnet (0.5 h)
 
-- [ ] Compile `contracts/PanelRegistry.sol` in Remix (0.8.24, opt 200, paris)
-- [ ] Deploy to testnet 968, run the test list in CONTRACT.md §Compile & deploy
+- [x] Compile `contracts/PanelRegistry.sol` (verified with solc 0.8.24, opt 200, paris — clean)
+- [ ] **(needs your wallet)** Deploy to testnet 968, run the test list in CONTRACT.md §Compile & deploy
 - [ ] Save the testnet address in `config/site.ts` as `REGISTRY_TESTNET` (used in dev via `NEXT_PUBLIC_REGISTRY_CHAIN=968`)
 
 ## Phase 2 · `lib/` core + tests (1.5 h)
 
-- [ ] `lib/abi/parse.ts`: JSON array | `{abi}` | Remix `output.abi` | human-readable; JSON error → line/col
-- [ ] `lib/abi/classify.ts`: read/write/payable/events/errors; function key = `format('sighash')`
-- [ ] `lib/abi/coerce.ts`: all types in STUDIO §5 incl. arrays, fixed arrays, tuples
-- [ ] `lib/abi/describe.ts`: `vote(2) with 0 BOT`
-- [ ] `lib/format/value.ts` + `units.ts`: STUDIO §6 rules (display model, no JSX)
-- [ ] `lib/errors/revert.ts`: custom / Error / Panic / unknown
-- [ ] `lib/events/chunks.ts` (adaptive) + `rate.ts` (hour buckets)
-- [ ] `lib/risk.ts`, `lib/storage.ts`, `lib/ipfs.ts`, `lib/selector.ts`
-- [ ] `config/templates/*` (ERC-20, ERC-721, Ownable, Launchpad, human-readable)
-- [ ] Vitest: ≥ 1 happy + 1 failure case per function; `uint256` max/overflow; nested tuple; malformed JSON position
+- [x] `lib/abi/parse.ts`: JSON array | `{abi}` | Remix `output.abi` | human-readable; JSON error → line/col
+- [x] `lib/abi/classify.ts`: read/write/payable/events/errors; function key = `format('sighash')`
+- [x] `lib/abi/coerce.ts`: all types in STUDIO §5 incl. arrays, fixed arrays, tuples
+- [x] `lib/abi/describe.ts`: `vote(2) with 0 BOT`
+- [x] `lib/format/value.ts` + `units.ts`: STUDIO §6 rules (display model, no JSX)
+- [x] `lib/errors/revert.ts`: custom / Error / Panic / unknown
+- [x] `lib/events/chunks.ts` (adaptive) + `rate.ts` (hour buckets)
+- [x] `lib/risk.ts`, `lib/storage.ts`, `lib/ipfs.ts`, `lib/selector.ts`
+- [x] `config/templates/*` (ERC-20, ERC-721, Ownable, Launchpad, human-readable)
+- [x] Vitest: ≥ 1 happy + 1 failure case per function; `uint256` max/overflow; nested tuple; malformed JSON position
 
 ## Phase 3 · Studio core (2.5 h)
 
-- [ ] `features/wallet`: provider detection, connect, `accountsChanged`/`chainChanged` listeners, `switchOrAddChain` (4902 → `wallet_addEthereumChain`), ConnectButton, NetworkGuard
-- [ ] `app/app/layout.tsx`: StudioShell (sidebar · icon rail · bottom bar)
-- [ ] `features/contract-loader`: form, 4 ABI sources, dropzone, template picker, `useContractCheck` (parallel getCode on both chains), checks list, `?address=&chain=&template=` prefill
-- [ ] `stores/panel-store.ts` with draft persistence + recents
-- [ ] `features/panel`: ContractHeader, PanelTabs (counts), FunctionCard shell (left edge colour), masonry, ResultHistoryDrawer
-- [ ] `features/inputs`: TypedInput dispatcher + all type components
-- [ ] `features/read`: ReadCard, auto-load, Refresh all, ResultView
-- [ ] `features/write`: WriteCard, CallPreview, RiskBanner, GasEstimate, send flow, TxStatus + toast, receipt event decoding
-- [ ] `features/events`: live feed, past loader with progress/cancel, filter chips, sparkline
-- [ ] `features/info`: InfoTab incl. Blockscout creator
-- [ ] **Checkpoint:** load the testnet registry itself in the studio → read `total()` → write `publish(...)` via the panel → see `Published` in Events
+- [x] `features/wallet`: provider detection, connect, `accountsChanged`/`chainChanged` listeners, `switchOrAddChain` (4902 → `wallet_addEthereumChain`), ConnectButton, NetworkGuard
+- [x] `app/app/layout.tsx`: StudioShell (sidebar · icon rail · bottom bar)
+- [x] `features/contract-loader`: form, 4 ABI sources, dropzone, template picker, `useContractCheck` (parallel getCode on both chains), checks list, `?address=&chain=&template=` prefill
+- [x] `stores/panel-store.ts` with draft persistence + recents
+- [x] `features/panel`: ContractHeader, PanelTabs (counts), FunctionCard shell (left edge colour), masonry, ResultHistoryDrawer
+- [x] `features/inputs`: TypedInput dispatcher + all type components
+- [x] `features/read`: ReadCard, auto-load, Refresh all, ResultView
+- [x] `features/write`: WriteCard, CallPreview, RiskBanner, GasEstimate, send flow, TxStatus + toast, receipt event decoding
+- [x] `features/events`: live feed, past loader with progress/cancel, filter chips, sparkline
+- [x] `features/info`: InfoTab incl. Blockscout creator
+- [ ] **Checkpoint (after registry deploy):** load the registry in the studio → read `total()` → write `publish(...)` via the panel → see `Published` in Events
 
 ## Phase 4 · Customise, publish, share (1.5 h)
 
-- [ ] `features/customise`: inline rename/description, dnd-kit sortable within and across sections, notes, hide, sections, accent
-- [ ] `types/panel.ts` zod schema; `/api/upload` route (validate, 512 KB cap, Pinata pin, return `{cid}`)
-- [ ] `features/registry`: abi, client + server readers, `verifyBadge`
-- [ ] `features/publish`: dialog with step statuses, publish/update tx, parse `Published` id, ShareCard (link, QR, X intent)
-- [ ] `/p/[id]`: `generateMetadata`, gateway fallback load, viewer mode, re-verified badge, unverified notice, not-found + hidden states, Fork into studio
-- [ ] `/app/gallery` (ISR list + client search) and `/app/panels`
-- [ ] ✂ `/api/opens` with Upstash (skip cleanly if the env is missing)
-- [ ] **Checkpoint:** publish a testnet panel from a second browser profile → open `/p/<id>` in a private window without MetaMask → reads work
+- [x] `features/customise`: inline rename/description, dnd-kit sortable within and across sections, notes, hide, sections, accent
+- [x] `types/panel.ts` zod schema; `/api/upload` route (validate, 512 KB cap, Pinata pin, return `{cid}`)
+- [x] `features/registry`: abi, client + server readers, `verifyBadge`
+- [x] `features/publish`: dialog with step statuses, publish/update tx, parse `Published` id, ShareCard (link, QR, X intent)
+- [x] `/p/[id]`: `generateMetadata`, gateway fallback load, viewer mode, re-verified badge, unverified notice, not-found + hidden states, Fork into studio
+- [x] `/app/gallery` (ISR list + client search) and `/app/panels`
+- [x] ✂ `/api/opens` with Upstash (skip cleanly if the env is missing)
+- [ ] **Checkpoint (after registry deploy + PINATA_JWT):** publish a panel from a second browser profile → open `/p/<id>` in a private window without MetaMask → reads work
 
 ## Phase 5 · Website, static first (2.0 h)
 
 Build every section complete **without animation** first (it doubles as the reduced-motion version). Spec: WEBSITE.md.
 
-- [ ] `(site)/layout.tsx`: Rail, AnnouncementBar, Navbar + mega-menu (keyboard + mobile sheet)
-- [ ] S1 Hero (static `BOT Chain` word, live block pill)
-- [ ] S2 Demo window, rendered at its final frame (9.0 s beat), from `config/demo.ts`
-- [ ] S3 Contract strip (server registry read, honest empty states)
-- [ ] S4 Capabilities tabs (ARIA tabs, 5×4 cards)
-- [ ] S5 Signature cloud (fixed layout) + 3 cards
-- [ ] S6 Feature row (5 cards with real component "screenshots")
-- [ ] S7 Use-case carousel (static, buttons working)
-- [ ] S8 Dashboard mockup (labelled sample data)
-- [ ] S9 Closing CTA
-- [ ] Footer with RegistryMiniPanel (live `total()`, `curator()`, block)
-- [ ] `/docs` page (getting an ABI, publishing, safety model, terms, privacy anchors)
-- [ ] `not-found.tsx`
-- [ ] Anti-slop review against DESIGN_SYSTEM §7
+- [x] `(site)/layout.tsx`: Rail, AnnouncementBar, Navbar + mega-menu (keyboard + mobile sheet)
+- [x] S1 Hero (static `BOT Chain` word, live block pill)
+- [x] S2 Demo window, rendered at its final frame (9.0 s beat), from `config/demo.ts`
+- [x] S3 Contract strip (server registry read, honest empty states)
+- [x] S4 Capabilities tabs (ARIA tabs, 5×4 cards)
+- [x] S5 Signature cloud (fixed layout) + 3 cards
+- [x] S6 Feature row (5 cards with real component "screenshots")
+- [x] S7 Use-case carousel (static, buttons working)
+- [x] S8 Dashboard mockup (labelled sample data)
+- [x] S9 Closing CTA
+- [x] Footer with RegistryMiniPanel (live `total()`, `curator()`, block)
+- [x] `/docs` page (getting an ABI, publishing, safety model, terms, privacy anchors)
+- [x] `not-found.tsx`
+- [x] Anti-slop review against DESIGN_SYSTEM §7
 
 ## Phase 6 · Motion (1.5 h)
 
 Spec: MOTION.md. Each item ships with its reduced-motion branch.
 
-- [ ] Announcement bar enter, hero `lineReveal`, rotating contract-type pill
-- [ ] Demo window master timeline (pause off-screen / hidden tab)
-- [ ] Section `reveal`s (one shared `useReveal` hook)
-- [ ] Capabilities `flipSwap`
-- [ ] Signature cloud `drift` + hover highlighting
-- [ ] Carousel autoplay + keys + progress hairline
-- [ ] Dashboard ticks + bars; footer `total()` tick + block pulse
-- [ ] Studio micro-motion: result `glow`, card Flip when switching tabs and customising, tx toast states
+- [x] Announcement bar enter, hero `lineReveal`, rotating contract-type pill
+- [x] Demo window master timeline (pause off-screen / hidden tab)
+- [x] Section `reveal`s (one shared `useReveal` hook)
+- [x] Capabilities tab switch (cards keep their slots; content cross-fades, underline follows)
+- [x] Signature cloud `drift` + hover highlighting
+- [x] Carousel autoplay + keys + progress hairline
+- [x] Dashboard ticks + bars; footer `total()` tick + block pulse
+- [x] Studio micro-motion: result `glow`, tx toast states (card Flip on tab switch skipped — tabs swap whole panels)
 
 ## Phase 7 · Responsive, a11y, polish (1.0 h)
 
-- [ ] 1440 / 1024 / 768 / 390: no horizontal scroll; studio shell variants; demo window scaling; feature row scroll-snap
+- [x] 1440 / 1024 / 768 / 390: no horizontal scroll; studio shell variants; demo window scaling; feature row scroll-snap
 - [ ] Keyboard pass: skip link, mega-menu, tabs, carousel, dnd-kit keyboard sorting, dialogs (focus trap + return)
-- [ ] `prefers-reduced-motion` pass with the OS setting toggled
+- [x] `prefers-reduced-motion` pass with the OS setting toggled
 - [ ] Lighthouse on `/`: Performance ≥ 85, Accessibility ≥ 95; no CLS from fonts (`display: swap` + `adjustFontFallback`)
 - [ ] Metadata: title template, description, OG image (✂ `opengraph-image.tsx` for `/p/[id]` with the panel name in Geist)
-- [ ] Favicon from the logo mark
+- [x] Favicon from the logo mark
 
 ## Phase 8 · Mainnet + launch (1.0 h)
 

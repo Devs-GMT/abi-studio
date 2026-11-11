@@ -126,9 +126,9 @@ Contract address (copy, explorer) · network · native balance (`getBalance`) ·
 
 ## 10. Customise (Step 3)
 
-Toggled by `[Customise]` in the header. While it's on:
-- The panel name and description become inline-editable (name ≤ 40 chars to match the contract).
-- Each card gets a drag handle (dnd-kit, keyboard: Space to lift, arrows to move), `Rename`, `Add note`, `Hide`/`Show`.
+Toggled by `[Customise]` in the header. While it's on, the tab content is replaced by a **layout editor** (a compact list, not the masonry — drag-and-drop across CSS columns is unreliable and this also works on phones):
+- Panel name (≤ 40 **bytes**, counted live), description (≤ 280), accent.
+- One row per function: drag handle (dnd-kit, keyboard: Space to lift, arrows to move, Space to drop), signature, `Label`, `Note`, `Hide`/`Show`.
 - Sections: `+ Add section` creates a titled group; cards drag between sections. The default sections are `Read` and `Write` until the user adds one.
 - Accent picker: four swatches.
 - Everything autosaves to the local draft. `Done` exits.

@@ -81,7 +81,16 @@ src/
 6. **Never auto-send a transaction.** Each write shows the exact call preview `vote(2) with 0 BOT` and needs an explicit click, then MetaMask confirmation.
 7. **localStorage only through `lib/storage`** (try/catch, versioned keys `abistudio:v1:*`).
 8. **Honesty:** badges are re-verified client-side on display (the on-chain badge is only a claim). Demo/sample data is labelled as such. No fake testimonials, logos, or panel names.
-9. Next 15+/16: `params` and `searchParams` are Promises, so `await` them. Route handlers live in `src/app/api/*/route.ts`.
+9. **Next 16 with Cache Components** (`cacheComponents: true`; read [AGENTS.md](AGENTS.md) and `node_modules/next/dist/docs/` before using a Next API you're unsure of):
+   - Cache server data with `'use cache'` + `cacheLife(...)` inside the data function. There is no `export const revalidate`.
+   - `await params` / `useSearchParams()` / uncached fetches go inside `<Suspense>`.
+   - `params` and `searchParams` are Promises.
+10. **React 19 lint is strict** (`react-hooks/set-state-in-effect`, `refs`, `purity`). Don't call setState synchronously in an effect. Instead:
+    - derive the state;
+    - set it in a promise callback or a subscription callback;
+    - or use `useSyncExternalStore` for localStorage.
+11. **Client-only state, client-only render.** Anything that reads localStorage during render must be gated: use `useSyncExternalStore` with a server snapshot, or render it only on the client (see `StudioHome`).
+12. **GSAP and hydration.** Never mutate server-rendered DOM before it hydrates. `RevealController` lives inside the page (not the layout), and CSS pre-hides `[data-reveal]` via the `js-motion` class set by the head script. When a GSAP tween uses `yPercent`, also set `y: 0`.
 
 ## UI rules (summary; full detail in DESIGN_SYSTEM.md)
 
