@@ -6,7 +6,7 @@ import { cn } from '@/lib/cn'
 /** Small, real-looking UI fragments for the capability cards. Decorative (aria-hidden). */
 
 function Box({ children, className }: { children: ReactNode; className?: string }) {
-  return <div className={cn('rounded-ctl border border-line bg-bg p-2.5 font-mono text-[11px] leading-4', className)}>{children}</div>
+  return <div className={cn('rounded-ctl border border-line bg-panel p-2.5 font-mono text-[11px] leading-4', className)}>{children}</div>
 }
 
 export const FRAGMENTS: Record<string, ReactNode> = {

@@ -1,7 +1,7 @@
 'use client'
 
 import { useRef, useState } from 'react'
-import { Tabs } from '@/components/ui/tabs'
+import { FolderTabs } from '@/components/ui/folder-tabs'
 import { MOTION_OK, gsap, useGSAP } from '@/lib/gsap'
 import { FRAGMENTS } from './fragments'
 
@@ -87,28 +87,22 @@ export function Capabilities() {
 
   return (
     <div data-reveal>
-      <div className="mb-6 border-b border-line">
-        <Tabs<TabId> label="Capabilities" idPrefix="cap" value={tab} onChange={setTab} items={TABS.map((t) => ({ id: t.id, label: t.label, accent: t.accent }))} />
-      </div>
-      <div
-        ref={grid}
-        role="tabpanel"
-        id={`cap-panel-${tab}`}
-        aria-labelledby={`cap-tab-${tab}`}
-        className="grid gap-px overflow-hidden rounded-card border border-line bg-line sm:grid-cols-2 lg:grid-cols-4"
-      >
-        {current.cards.map((c, i) => (
-          <article key={`slot-${i}`} className="flex min-h-[248px] flex-col bg-bg p-5">
-            <div data-cap-content className="flex h-full flex-col">
-              <h3 className="text-h4">{c.title}</h3>
-              <p className="mt-1.5 text-[14px] leading-5 text-muted">{c.body}</p>
-              <div className="mt-auto pt-6" aria-hidden>
-                {FRAGMENTS[c.key]}
+      <FolderTabs<TabId> label="Capabilities" idPrefix="cap" value={tab} onChange={setTab} items={TABS.map((t) => ({ id: t.id, label: t.label }))}>
+        <div ref={grid} className="grid gap-3 p-3 sm:grid-cols-2 md:p-4 lg:grid-cols-4">
+          {current.cards.map((c, i) => (
+            <article key={`slot-${i}`} className="flex min-h-[260px] flex-col rounded-card border border-line bg-bg p-5 transition-colors duration-300 hover:border-line-2">
+              <div data-cap-content className="flex h-full flex-col">
+                <p className="font-mono text-[11px] text-faint">0{i + 1}</p>
+                <h3 className="mt-3 text-h4">{c.title}</h3>
+                <p className="mt-1.5 text-[14px] leading-5 text-muted">{c.body}</p>
+                <div className="mt-auto pt-6" aria-hidden>
+                  {FRAGMENTS[c.key]}
+                </div>
               </div>
-            </div>
-          </article>
-        ))}
-      </div>
+            </article>
+          ))}
+        </div>
+      </FolderTabs>
     </div>
   )
 }
