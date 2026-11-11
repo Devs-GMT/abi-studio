@@ -44,7 +44,7 @@ async function MiniPanelWithTotal() {
 
 export function Footer() {
   return (
-    <footer className="relative border-t border-line">
+    <footer className="relative border-t border-line md:border-x">
       <div className="grid gap-10 px-4 py-14 md:grid-cols-12 md:gap-12 md:px-12 md:py-16">
         <div className="md:col-span-5">
           <Suspense fallback={<RegistryMiniPanel initialTotal={null} />}>

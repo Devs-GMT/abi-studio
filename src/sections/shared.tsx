@@ -20,7 +20,7 @@ export function Section({
   ticks?: boolean
 }) {
   return (
-    <section id={id} aria-label={label} className={cn('relative border-t border-line', className)}>
+    <section id={id} aria-label={label} className={cn('relative border-t border-line md:border-x', className)}>
       {ticks && (
         <>
           <RailTick className="-left-[5px] -top-[5px] hidden md:block" />

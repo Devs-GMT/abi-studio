@@ -34,7 +34,7 @@ function Code({ children }: { children: React.ReactNode }) {
 
 export default function DocsPage() {
   return (
-    <div className="grid gap-12 px-4 py-16 md:grid-cols-12 md:px-12 md:py-24">
+    <div className="grid gap-12 px-4 py-16 md:grid-cols-12 md:border-x md:border-line md:px-12 md:py-24">
       <aside className="md:col-span-3">
         <nav aria-label="Docs" className="md:sticky md:top-24">
           <p className="mb-3 font-mono text-[12px] text-faint">Docs</p>

@@ -7,8 +7,8 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
     <>
       <AnnouncementBar />
       <Navbar />
-      {/* The rails: one ruled column from the navbar to the footer. */}
-      <div className="relative mx-auto max-w-[1248px] md:border-x md:border-line">
+      {/* Content column. Rails (border-x) are drawn per Section, so the hero stays clean. */}
+      <div className="relative mx-auto max-w-[1248px]">
         <main id="main">{children}</main>
         <Footer />
       </div>
