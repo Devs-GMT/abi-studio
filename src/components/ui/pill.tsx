@@ -41,7 +41,7 @@ export function Pill({ tone = 'neutral', dot, pulse, mono, className, children, 
   return (
     <span
       className={cn(
-        'inline-flex h-6 items-center gap-1.5 whitespace-nowrap rounded-full border border-line px-2 text-label',
+        'inline-flex items-center gap-1.5 whitespace-nowrap text-label',
         mono && 'font-mono text-[11px] font-normal',
         tone === 'neutral' ? 'text-muted' : textTone[tone],
         className,

@@ -28,7 +28,7 @@ export function AnnouncementBar() {
   return (
     <div ref={ref} className="relative z-40 border-b border-line bg-panel">
       <div className="mx-auto flex h-9 max-w-[1248px] items-center justify-center gap-2.5 px-10 text-[13px]">
-        <span className="rounded-full border border-read/50 px-1.5 py-px font-mono text-[10px] uppercase tracking-[0.06em] text-read">New</span>
+        <span className="font-mono text-[11px] uppercase tracking-[0.08em] text-read">New</span>
         <Link href="/app?template=launchpad" className="group inline-flex min-w-0 items-center gap-1.5 text-fg/90 hover:text-fg">
           <span className="truncate">Publish panels for Launchpad contracts in one click</span>
           <ArrowRight className="size-3.5 shrink-0 transition-transform duration-200 group-hover:translate-x-0.5" />

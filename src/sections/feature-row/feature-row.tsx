@@ -32,8 +32,8 @@ const FEATURES = [
     body: 'Checked against the explorer’s creation record, or owner().',
     frame: (
       <Frame className="items-start gap-2">
-        <span className="whitespace-nowrap rounded-full border border-ok/40 px-2 py-0.5 font-mono text-[10px] text-ok">✓ Deployer · via explorer</span>
-        <span className="whitespace-nowrap rounded-full border border-ok/40 px-2 py-0.5 font-mono text-[10px] text-ok">✓ Owner · via owner()</span>
+        <span className="whitespace-nowrap font-mono text-[11px] text-ok">✓ Deployer · via explorer</span>
+        <span className="whitespace-nowrap font-mono text-[11px] text-ok">✓ Owner · via owner()</span>
         <span className="font-mono text-[11px] text-event">Unverified panel</span>
       </Frame>
     ),

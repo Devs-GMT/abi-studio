@@ -57,8 +57,8 @@ export function EventsTab() {
                 aria-pressed={filter === n}
                 onClick={() => setFilter(n)}
                 className={cn(
-                  'h-7 rounded-full border px-2.5 font-mono text-[12px] transition-colors',
-                  filter === n ? 'border-event/50 bg-event/10 text-event' : 'border-line-2 text-muted hover:text-fg',
+                  'h-7 px-1 font-mono text-[12px] underline-offset-[6px] transition-colors',
+                  filter === n ? 'text-event underline' : 'text-muted hover:text-fg',
                 )}
               >
                 {n === 'all' ? 'All' : n}

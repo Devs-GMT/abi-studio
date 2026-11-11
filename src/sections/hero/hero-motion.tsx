@@ -78,7 +78,7 @@ export function HeroHeadline() {
 export function LiveBlockPill() {
   const { block, stale } = useBlockNumber(REGISTRY.chainId, 2000)
   return (
-    <span className="inline-flex h-7 items-center gap-2 rounded-full border border-line bg-bg px-3 font-mono text-[12px] text-muted">
+    <span className="inline-flex items-center gap-2 font-mono text-[12px] text-muted">
       <Dot tone={stale ? 'event' : 'ok'} pulse={!stale} />
       BOT Chain mainnet · block #{block ? formatThousands(block) : '…'}
     </span>

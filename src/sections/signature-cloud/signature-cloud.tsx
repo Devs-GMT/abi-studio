@@ -46,8 +46,8 @@ function Chip({ sig, kind, focus, className, style }: { sig: string; kind: Kind;
       data-chip
       style={style}
       className={cn(
-        'inline-flex h-7 items-center whitespace-nowrap rounded-full border px-2.5 font-mono text-[12px] transition-[opacity,color,border-color] duration-300',
-        kind === 'type' ? 'border-line text-faint' : 'border-line-2',
+        'inline-flex items-center whitespace-nowrap font-mono text-[13px] transition-[opacity,color,border-color] duration-300',
+        kind === 'type' && 'text-faint',
         kind !== 'type' && (focus && on ? kindText[kind] : kind === 'read' ? 'text-read/75' : kind === 'write' ? 'text-[#a78bfa]/75' : 'text-event/75'),
         focus && !on && 'opacity-20',
         className,

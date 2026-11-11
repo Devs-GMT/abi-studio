@@ -260,7 +260,7 @@ export function DemoWindow() {
     <div ref={wrap} className="w-full" data-reveal>
       <div style={{ height: CANVAS_H * scale }} className="relative">
         <div ref={canvas} className="absolute left-0 top-0 w-[820px] origin-top-left md:w-[1100px]" style={{ transform: `scale(${scale})` }}>
-          <WindowFrame title={`ABI Studio — ${DEMO.name}`} bodyClassName="relative flex h-[564px]" aria-hidden>
+          <WindowFrame title={`ABI Studio · ${DEMO.name}`} bodyClassName="relative flex h-[564px]" aria-hidden>
             <Cursor />
             {/* sidebar */}
             <div className="hidden w-[200px] shrink-0 flex-col border-r border-line px-2.5 py-3 md:flex">
@@ -296,13 +296,13 @@ export function DemoWindow() {
                   <span className="ml-px inline-block h-3.5 w-px animate-blink bg-read" />
                 </div>
                 <div className="relative h-7 w-[132px] shrink-0">
-                  <span data-net="idle" className="invisible absolute inset-0 flex items-center justify-center rounded-full border border-line font-mono text-[11px] text-faint">
+                  <span data-net="idle" className="invisible absolute inset-0 flex items-center justify-center font-mono text-[11px] text-faint">
                     Network: auto
                   </span>
-                  <span data-net="check" className="invisible absolute inset-0 flex items-center justify-center rounded-full border border-line font-mono text-[11px]">
+                  <span data-net="check" className="invisible absolute inset-0 flex items-center justify-center font-mono text-[11px]">
                     <span className="shimmer-text">Checking…</span>
                   </span>
-                  <span data-net="ok" className="absolute inset-0 flex items-center justify-center gap-1.5 rounded-full border border-line font-mono text-[11px] text-ok">
+                  <span data-net="ok" className="absolute inset-0 flex items-center justify-center gap-1.5 font-mono text-[11px] text-ok">
                     <span className="size-1.5 rounded-full bg-ok" /> {DEMO.chain}
                   </span>
                 </div>
@@ -407,7 +407,7 @@ export function DemoWindow() {
                     {['All', 'Voted', 'OptionAdded'].map((c, i) => (
                       <span
                         key={c}
-                        className={cn('rounded-full border px-2 py-0.5 font-mono text-[10px]', i === 0 ? 'border-event/50 text-event' : 'border-line-2 text-muted')}
+                        className={cn('font-mono text-[10px]', i === 0 ? 'text-event underline underline-offset-4' : 'text-muted')}
                       >
                         {c}
                       </span>
@@ -442,15 +442,15 @@ export function DemoWindow() {
                 </div>
               </div>
 
-              {/* status pill */}
+              {/* status line */}
               <div className="absolute bottom-4 right-5 h-7 w-[168px]">
-                <span data-status="idle" className="invisible absolute inset-0 flex items-center justify-center gap-1.5 rounded-full border border-line-2 bg-panel-2 font-mono text-[11px]">
+                <span data-status="idle" className="invisible absolute inset-0 flex items-center justify-end gap-1.5 font-mono text-[11px]">
                   <span className="shimmer-text">Working…</span>
                 </span>
-                <span data-status="wallet" className="invisible absolute inset-0 flex items-center justify-center rounded-full border border-write/40 bg-panel-2 font-mono text-[11px]">
+                <span data-status="wallet" className="invisible absolute inset-0 flex items-center justify-end font-mono text-[11px]">
                   <span className="shimmer-text [--shimmer-base:#a78bfa]">Waiting for wallet…</span>
                 </span>
-                <span data-status="ok" className="absolute inset-0 flex items-center justify-center gap-1.5 rounded-full border border-ok/40 bg-panel-2 font-mono text-[11px] text-ok">
+                <span data-status="ok" className="absolute inset-0 flex items-center justify-end gap-1.5 font-mono text-[11px] text-ok">
                   <span className="relative inline-flex size-1.5">
                     <span data-pulse className="absolute inset-0 rounded-full bg-ok opacity-0" />
                     <span className="relative size-1.5 rounded-full bg-ok" />

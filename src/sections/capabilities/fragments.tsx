@@ -95,7 +95,7 @@ export const FRAGMENTS: Record<string, ReactNode> = {
   ),
   'write-safety': (
     <Box className="border-danger/30 bg-danger/[0.07] text-danger">
-      <span className="font-sans">withdraw() — admin or value-moving function. Double-check before sending.</span>
+      <span className="font-sans">withdraw(): admin or value-moving function. Double-check before sending.</span>
     </Box>
   ),
   'events-live': (
@@ -119,9 +119,9 @@ export const FRAGMENTS: Record<string, ReactNode> = {
     </Box>
   ),
   'events-filter': (
-    <Box className="flex flex-wrap gap-1">
+    <Box className="flex flex-wrap gap-3">
       {['All', 'Transfer', 'Approval'].map((c, i) => (
-        <span key={c} className={cn('rounded-full border px-2 py-0.5', i === 1 ? 'border-event/50 text-event' : 'border-line-2 text-muted')}>
+        <span key={c} className={cn(i === 1 ? 'text-event underline underline-offset-4' : 'text-muted')}>
           {c}
         </span>
       ))}
@@ -163,7 +163,7 @@ export const FRAGMENTS: Record<string, ReactNode> = {
   ),
   'share-badge': (
     <Box className="flex items-center gap-2">
-      <span className="rounded-full border border-ok/40 px-2 py-0.5 text-ok">✓ Deployer</span>
+      <span className="text-ok">✓ Deployer</span>
       <span className="text-faint">via explorer</span>
     </Box>
   ),

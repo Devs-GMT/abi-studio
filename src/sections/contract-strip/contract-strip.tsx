@@ -12,7 +12,7 @@ function PanelPill({ p }: { p: PanelRecord }) {
   return (
     <Link
       href={`/p/${p.id}`}
-      className="inline-flex h-9 shrink-0 items-center gap-2 rounded-full border border-line bg-panel px-3.5 text-[13px] text-fg/90 transition-colors hover:border-line-2 hover:text-fg"
+      className="inline-flex shrink-0 items-center gap-2 py-1 text-[15px] text-fg/80 transition-colors hover:text-fg"
     >
       <span className={cn('size-1.5 rounded-full', p.chainId === 677 ? 'bg-ok' : 'bg-event')} aria-hidden />
       {p.name}
@@ -26,7 +26,7 @@ async function Strip() {
   if (panels.length === 0) {
     return (
       <p className="text-[14px] text-muted">
-        {REGISTRY_DEPLOYED ? 'No panels published yet — be the first.' : 'Published panels appear here once the registry is live.'}{' '}
+        {REGISTRY_DEPLOYED ? 'No panels published yet. Be the first.' : 'Published panels appear here once the registry is live.'}{' '}
         <Link href="/app" className="text-read hover:underline">
           Make one →
         </Link>
@@ -35,13 +35,13 @@ async function Strip() {
   }
   if (panels.length < 6) {
     return (
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-x-10 gap-y-2">
         {panels.map((p) => (
           <PanelPill key={p.id} p={p} />
         ))}
         <Link
           href="/app"
-          className="inline-flex h-9 items-center gap-1.5 rounded-full border border-dashed border-line-2 px-3.5 text-[13px] text-muted hover:text-fg"
+          className="inline-flex items-center gap-1.5 py-1 text-[15px] text-muted underline-offset-4 hover:text-fg hover:underline"
         >
           Your panel here <ArrowRight className="size-3.5" />
         </Link>
@@ -50,7 +50,7 @@ async function Strip() {
   }
   return (
     <div className="group relative overflow-hidden [mask-image:linear-gradient(90deg,transparent,#000_8%,#000_92%,transparent)]">
-      <div className="flex w-max animate-marquee gap-2 group-hover:[animation-play-state:paused] group-focus-within:[animation-play-state:paused] motion-reduce:w-auto motion-reduce:animate-none motion-reduce:flex-wrap">
+      <div className="flex w-max animate-marquee gap-12 group-hover:[animation-play-state:paused] group-focus-within:[animation-play-state:paused] motion-reduce:w-auto motion-reduce:animate-none motion-reduce:flex-wrap">
         {[...panels, ...panels].map((p, i) => (
           <span key={`${p.id}-${i}`} aria-hidden={i >= panels.length || undefined} className={cn(i >= panels.length && 'motion-reduce:hidden')}>
             <PanelPill p={p} />
