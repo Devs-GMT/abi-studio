@@ -2,6 +2,7 @@ export function gateways(): string[] {
   const list = [
     process.env.NEXT_PUBLIC_IPFS_GATEWAY,
     'https://gateway.pinata.cloud/ipfs/',
+    'https://w3s.link/ipfs/',
     'https://ipfs.io/ipfs/',
     'https://dweb.link/ipfs/',
   ].filter((g): g is string => !!g)
@@ -13,7 +14,7 @@ export function isCid(s: string) {
 }
 
 /** Fetch JSON from IPFS, trying each gateway in turn (timeout per gateway). */
-export async function fetchIpfsJson<T = unknown>(cid: string, timeoutMs = 4000, signal?: AbortSignal): Promise<T> {
+export async function fetchIpfsJson<T = unknown>(cid: string, timeoutMs = 10_000, signal?: AbortSignal): Promise<T> {
   let lastError: unknown = null
   for (const g of gateways()) {
     if (signal?.aborted) throw new Error('aborted')

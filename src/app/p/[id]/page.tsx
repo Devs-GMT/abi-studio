@@ -3,7 +3,7 @@ import { Suspense } from 'react'
 import { ButtonLink } from '@/components/ui/button'
 import { REGISTRY_DEPLOYED } from '@/config/site'
 import { shortAddress } from '@/lib/format/units'
-import { getPanelRecord } from '@/features/registry/server'
+import { getPanelDoc, getPanelRecord } from '@/features/registry/server'
 import { PanelViewer, ViewerBar } from '@/features/viewer'
 
 type Props = { params: Promise<{ id: string }> }
@@ -47,7 +47,8 @@ async function PanelLoader({ params }: Props) {
   const record = n === null ? null : await getPanelRecord(n)
   if (!record) return <Message title="PanelNotFound()" body={`There is no panel #${id} yet.`} />
   if (record.hidden) return <Message title="Hidden()" body="This panel was hidden by the curator." />
-  return <PanelViewer record={record} />
+  const doc = await getPanelDoc(record.cid)
+  return <PanelViewer record={record} initialDoc={doc} />
 }
 
 export default function PanelPage({ params }: Props) {
