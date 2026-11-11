@@ -7,6 +7,7 @@ import { Address } from '@/components/ui/address'
 import { Button } from '@/components/ui/button'
 import { Pill } from '@/components/ui/pill'
 import { CHAINS } from '@/config/chains'
+import { REGISTRY } from '@/config/site'
 import { formatAmount, formatDate } from '@/lib/format/units'
 import { cn } from '@/lib/cn'
 import { readProvider } from '@/features/chain'
@@ -77,7 +78,7 @@ export function ContractHeader({ onPublish }: { onPublish?: () => void }) {
               <>
                 <span className="text-[12px] text-faint">
                   panel <span className="font-mono">#{record.id}</span> · by{' '}
-                  <Address value={record.publisher} chainId={677} copy={false} className="text-[12px] text-faint" /> ·{' '}
+                  <Address value={record.publisher} chainId={REGISTRY.chainId} copy={false} className="text-[12px] text-faint" /> ·{' '}
                   {formatDate(record.at).slice(0, 10)}
                 </span>
                 {badge && badge.badge > 0 && (
