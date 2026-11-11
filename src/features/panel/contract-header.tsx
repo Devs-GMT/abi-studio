@@ -60,10 +60,12 @@ export function ContractHeader({ onPublish }: { onPublish?: () => void }) {
 
   return (
     <header className="relative border-b border-line">
-      <span aria-hidden className={cn('absolute inset-x-0 top-0 h-px', accentRule[doc.accent])} />
       <div className="flex flex-col gap-4 px-4 pb-4 pt-5 md:flex-row md:items-start md:justify-between md:px-6">
         <div className="min-w-0">
-          <h1 className="truncate text-[22px] font-medium leading-7 tracking-[-0.02em]">{doc.name}</h1>
+          <h1 className="flex items-center gap-2.5 truncate text-[22px] font-medium leading-7 tracking-[-0.02em]">
+            <span aria-hidden className={cn('size-2 shrink-0 rounded-[3px]', accentRule[doc.accent])} />
+            {doc.name}
+          </h1>
           {doc.description && <p className="mt-1 max-w-[70ch] text-[13px] text-muted">{doc.description}</p>}
           <div className="mt-2.5 flex flex-wrap items-center gap-x-3 gap-y-2">
             <Address value={doc.address} chainId={doc.chainId} className="text-muted" />

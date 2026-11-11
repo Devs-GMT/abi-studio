@@ -73,9 +73,9 @@ export function PanelWorkspace() {
   if (!doc || !c) return null
 
   const items: { id: PanelTab; label: string; count?: number; accent: string; icon: ReactNode }[] = [
-    { id: 'read', label: 'Read', count: reads, accent: 'bg-read', icon: <BookOpen className="size-4" strokeWidth={1.5} /> },
-    { id: 'write', label: 'Write', count: writes, accent: 'bg-write', icon: <Pencil className="size-4" strokeWidth={1.5} /> },
-    { id: 'events', label: 'Events', count: c.events.length, accent: 'bg-event', icon: <Radio className="size-4" strokeWidth={1.5} /> },
+    { id: 'read', label: 'Read', count: reads, accent: 'bg-fg', icon: <BookOpen className="size-4" strokeWidth={1.5} /> },
+    { id: 'write', label: 'Write', count: writes, accent: 'bg-fg', icon: <Pencil className="size-4" strokeWidth={1.5} /> },
+    { id: 'events', label: 'Events', count: c.events.length, accent: 'bg-fg', icon: <Radio className="size-4" strokeWidth={1.5} /> },
     { id: 'info', label: 'Info', accent: 'bg-fg', icon: <Info className="size-4" strokeWidth={1.5} /> },
   ]
 
