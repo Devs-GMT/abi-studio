@@ -140,7 +140,7 @@ Spec: MOTION.md. Each item ships with its reduced-motion branch.
 
 ## Phase 8 · Mainnet + launch (1.0 h)
 
-- [ ] Deploy PanelRegistry to mainnet 677 + verify on scan.botchain.ai
+- [x] Deploy PanelRegistry to mainnet 677 + verify on scan.botchain.ai
 - [ ] `REGISTRY.address` in `config/site.ts`; README; footer shows it
 - [ ] Vercel project + env vars (DEPLOYMENT.md) → production deploy at `https://<project>.vercel.app`
 - [ ] Publish real panels for 3 BOT Chain contracts you've deployed; set `FEATURED_PANEL_ID`

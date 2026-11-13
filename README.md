@@ -5,7 +5,7 @@
 Paste a contract address and its ABI, and ABI Studio builds a working panel for it: read functions, send transactions, and watch events live. Customise the panel, publish it on-chain, and share one link that anyone can open.
 
 - **Live site:** https://abi-studio.vercel.app *(update after deploy)*
-- **PanelRegistry on BOT Chain mainnet:** `0x…` *(update after deploy)*: [view on scan.botchain.ai](https://scan.botchain.ai/address/0x…)
+- **PanelRegistry on BOT Chain mainnet:** `0x6fABadD7EB87EEFC381A180401b989C929DB1278`: [view on scan.botchain.ai](https://scan.botchain.ai/address/0x6fABadD7EB87EEFC381A180401b989C929DB1278)
 
 ## What it does
 

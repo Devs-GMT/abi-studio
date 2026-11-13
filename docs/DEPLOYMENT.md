@@ -39,13 +39,14 @@ Pinata call: `POST https://api.pinata.cloud/pinning/pinJSONToIPFS` with `Authori
 
 See CONTRACT.md §Compile & deploy. After deploying:
 
-- [ ] Address → `src/config/site.ts` (`REGISTRY.address`), README, this file below
-- [ ] Verified source on https://scan.botchain.ai/address/<ADDRESS>
-- [ ] `curator()` = your deployer wallet
+- [x] Address → `src/config/site.ts` (`REGISTRY.address`), README, this file below
+- [x] Verified source on https://scan.botchain.ai/address/0x6fABadD7EB87EEFC381A180401b989C929DB1278
+- [x] `curator()` = your deployer wallet
 
 ```
-PanelRegistry (mainnet 677): 0x________________________________________
-Deployed in tx:              0x________________________________________
+PanelRegistry (mainnet 677): 0x6fABadD7EB87EEFC381A180401b989C929DB1278
+Deployed in tx:              0x58bcb88fdf1e1a984abfe1801ced9ff8f3fa364f5807a7e21cae6e37a5571093 (block 30,099,531)
+Curator (677):               0xAeaD05d40034B2248FB9a6051341c465BB3Ac9D3 (same deployer wallet, kept by choice)
 PanelRegistry (testnet 968): 0x6fABadD7EB87EEFC381A180401b989C929DB1278
 Deployed in tx (968):        0x258abb6ade5b2fdb316284fd17314ab2f61d90e5bebfa73655b1203c468cbfed (block 30,022,364)
 Curator (968):               0xAeaD05d40034B2248FB9a6051341c465BB3Ac9D3 (burner, testnet only)

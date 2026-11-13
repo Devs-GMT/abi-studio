@@ -1,11 +1,11 @@
 import type { ChainId } from './chains'
 
 /**
- * PanelRegistry deployments. Fill the mainnet address after deploying (docs/CONTRACT.md).
- * An empty string means "not deployed yet": publish is disabled and the footer says so.
+ * PanelRegistry deployments (docs/DEPLOYMENT.md §Mainnet contract). Same deployer at nonce 0
+ * on both chains, so the address matches. An empty string means "not deployed yet".
  */
 export const REGISTRY_ADDRESSES: Record<ChainId, string> = {
-  677: '',
+  677: '0x6fABadD7EB87EEFC381A180401b989C929DB1278',
   968: '0x6fABadD7EB87EEFC381A180401b989C929DB1278',
 }
 
